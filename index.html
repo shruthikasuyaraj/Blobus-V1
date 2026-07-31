@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blobus - Pastel Squishy Companion Productivity</title>
+
+  <!-- Google Fonts: Quicksand & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Google Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Google API Client Library Boilerplate -->
+  <script src="https://apis.google.com/js/api.js" async defer></script>
+</head>
+<body class="bg-[#FAF7F2] text-[#33272A] font-sans min-h-screen flex flex-col antialiased">
+
+  <div id="app-wrapper" class="flex min-h-screen w-full relative overflow-hidden">
+
+    <!-- ========================================== -->
+    <!-- LEFT SIDEBAR NAVIGATION                    -->
+    <!-- ========================================== -->
+    <aside id="main-sidebar" class="w-64 bg-white/90 border-r border-[#E8DFD8] p-6 flex flex-col justify-between z-30 shrink-0 shadow-xs">
+      <div class="flex flex-col gap-8">
+        <!-- Logo Header -->
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-[#FFD1DC] border border-[#FFB7C5] flex items-center justify-center text-xl shadow-xs text-[#33272A] font-bold">
+            🌸
+          </div>
+          <div>
+            <h1 class="font-heading font-bold text-lg text-[#33272A] leading-tight">Blobus</h1>
+            <span class="text-[11px] text-[#7C6C70] font-medium tracking-wide">Squishy Companion</span>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex flex-col gap-2">
+          <a href="#" data-path="focus-dashboard" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">timer</span>
+            <span class="font-bold text-sm">Focus Dashboard</span>
+          </a>
+          <a href="#" data-path="blob-studio" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">face</span>
+            <span class="font-bold text-sm">Squishy Studio</span>
+          </a>
+          <a href="#" data-path="tasks" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">assignment</span>
+            <span class="font-bold text-sm">My Intentions</span>
+          </a>
+          <a href="#" data-path="stats" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">insights</span>
+            <span class="font-bold text-sm">Focus Insights</span>
+          </a>
+          <a href="#" data-path="calendar" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">calendar_month</span>
+            <span class="font-bold text-sm">Schedule & Events</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Sidebar Companion Card -->
+      <div class="bento-card p-4 flex items-center gap-3 bg-[#FAF7F2] border-[#E8DFD8]">
+        <div class="w-10 h-10 rounded-2xl bg-[#FFD1DC] border border-[#FFB7C5] flex items-center justify-center text-lg flex-shrink-0">
+          ✨
+        </div>
+        <div class="overflow-hidden">
+          <h4 class="text-xs font-bold text-[#33272A] truncate header-blob-name">Squishy Puff</h4>
+          <span class="text-[10px] text-[#7C6C70] font-semibold block truncate">Soft Morphing Blob</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT AREA                          -->
+    <!-- ========================================== -->
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto relative">
+
+      <!-- TOP HEADER BAR -->
+      <header class="h-20 px-8 border-b border-[#E8DFD8] flex items-center justify-between bg-white/60 backdrop-blur-md sticky top-0 z-20">
+        <!-- Left Group: Essential Stats (Coins + Streak) -->
+        <div class="flex items-center gap-3">
+          <!-- Focus Coins Pill -->
+          <div class="flex items-center gap-2 bg-[#FFF1C5] border border-[#FFE89C] px-3.5 py-2 rounded-2xl shadow-xs">
+            <span class="text-lg">🪙</span>
+            <div class="flex flex-col">
+              <span class="text-[9px] text-[#7C6C70] uppercase font-bold tracking-wider leading-none">Focus Coins</span>
+              <span class="text-xs font-bold text-[#33272A] header-coins-balance">300 Coins</span>
+            </div>
+          </div>
+
+          <!-- Streak Pill -->
+          <div class="flex items-center gap-2 bg-[#FFD1DC] border border-[#FFB7C5] px-3.5 py-2 rounded-2xl shadow-xs">
+            <span class="text-lg">🔥</span>
+            <div class="flex flex-col">
+              <span class="text-[9px] text-[#7C6C70] uppercase font-bold tracking-wider leading-none">Streak</span>
+              <span class="text-xs font-bold text-[#33272A] header-streak-count">5 Days</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Group: Actions & Profile -->
+        <div class="flex items-center gap-3">
+          <!-- Settings Icon Button (⚙️) -->
+          <button id="header-settings-btn" onclick="openSettingsModal()" class="flex items-center justify-center w-10 h-10 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold rounded-2xl transition-all cursor-pointer shadow-xs border border-[#E8DFD8]" title="Settings & Profile">
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+          </button>
+
+          <!-- Insights Header Button -->
+          <button id="header-insights-btn" onclick="switchView('stats')" class="flex items-center gap-1.5 px-3.5 py-2 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold text-xs rounded-2xl transition-all cursor-pointer shadow-xs border border-[#E8DFD8]">
+            <span class="material-symbols-outlined text-[18px] text-[#FFB7C5]">insights</span>
+            <span>Insights</span>
+          </button>
+
+          <!-- Profile / User Badge -->
+          <button id="header-auth-btn" onclick="openSettingsModal()" class="flex items-center gap-2 px-3.5 py-2 bg-[#FFD1DC] hover:bg-[#FFB7C5] text-[#33272A] font-bold text-xs rounded-2xl transition-all cursor-pointer shadow-xs border border-[#FFB7C5]/40">
+            <span class="material-symbols-outlined text-[18px]">account_circle</span>
+            <span id="header-user-label">Sign In</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW CONTAINER -->
+      <div class="flex-1 flex flex-col relative p-6">
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: FOCUS DASHBOARD                   -->
+        <!-- ========================================== -->
+        <section id="view-focus-dashboard" class="view-section p-2 flex-col w-full flex-1 gap-6 active">
+          
+          <div class="grid grid-cols-12 gap-6 flex-1 items-stretch">
+
+            <!-- Left Column: Focus Master Timer Bento -->
+            <div class="col-span-12 lg:col-span-5 flex flex-col gap-6">
+              
+              <!-- Timer Card -->
+              <div class="bento-card p-6 flex flex-col justify-between gap-6 flex-1">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[#FFB7C5]">timer</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#7C6C70]">Pomodoro Engine</span>
+                  </div>
+
+                  <span id="tab-warning-badge" class="text-xs font-bold uppercase tracking-wider text-[#FFB7C5] bg-[#FFD1DC]/40 px-3 py-1.5 rounded-full border border-[#FFB7C5]/30">
+                    Warnings: 0/3
+                  </span>
+                </div>
+
+                <!-- Mode Selector Pills -->
+                <div class="flex p-1.5 bg-[#F3EFEA] rounded-2xl gap-1 border border-[#E8DFD8]">
+                  <button id="btn-mode-work" onclick="setTimerMode('work')" class="flex-1 py-2 rounded-xl text-xs font-bold transition-all bg-[#FFB7C5] text-white shadow-xs cursor-pointer">
+                    Focus Work
+                  </button>
+                  <button id="btn-mode-break" onclick="setTimerMode('break')" class="flex-1 py-2 rounded-xl text-xs font-bold transition-all text-[#7C6C70] hover:text-[#33272A] cursor-pointer">
+                    Short Break
+                  </button>
+                </div>
+
+                <!-- Clock Readout -->
+                <div class="text-center my-2">
+                  <h1 id="main-timer" class="text-6xl md:text-7xl font-bold font-heading tracking-tight text-[#33272A]">25:00</h1>
+                  <p id="monitoring-status-badge" class="text-xs text-[#7C6C70] mt-2 font-medium flex items-center justify-center gap-2">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFB7C5] opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-[#FFB7C5]"></span>
+                    </span>
+                    <span id="status-mode-badge" class="text-xs text-[#7C6C70] uppercase tracking-widest font-bold">FOCUSING</span>
+                  </p>
+                </div>
+
+                <!-- Custom Duration Inputs -->
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-[#FAF7F2] p-3 rounded-2xl border border-[#E8DFD8]">
+                    <label class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider block mb-1">Work (Min)</label>
+                    <input id="input-work-min" type="number" value="25" min="1" max="120" class="w-full bg-white px-3 py-1.5 rounded-xl border border-[#E8DFD8] text-sm font-bold text-[#33272A] focus:outline-none focus:border-[#FFB7C5]" />
+                  </div>
+                  <div class="bg-[#FAF7F2] p-3 rounded-2xl border border-[#E8DFD8]">
+                    <label class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider block mb-1">Break (Min)</label>
+                    <input id="input-break-min" type="number" value="5" min="1" max="60" class="w-full bg-white px-3 py-1.5 rounded-xl border border-[#E8DFD8] text-sm font-bold text-[#33272A] focus:outline-none focus:border-[#FFB7C5]" />
+                  </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex items-center gap-3">
+                  <button id="btn-start" class="flex-1 py-3.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold rounded-2xl text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-98 cursor-pointer">
+                    <span class="material-symbols-outlined">play_arrow</span>
+                    <span>Start Work</span>
+                  </button>
+                  <button id="btn-reset" class="px-4 py-3.5 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#7C6C70] font-bold rounded-2xl text-sm transition-all cursor-pointer">
+                    <span class="material-symbols-outlined">refresh</span>
+                  </button>
+                </div>
+
+              </div>
+
+              <!-- Coin Reward Progress Bar Card -->
+              <div class="bento-card p-5 flex flex-col gap-3 bg-[#FFF1C5]/40 border-[#FFE89C]">
+                <div class="flex justify-between items-center text-xs font-bold text-[#33272A]">
+                  <span class="flex items-center gap-1.5">
+                    <span>🪙</span>
+                    <span>Active Focus Earnings</span>
+                  </span>
+                  <span id="coin-reward-progress-label" class="text-[11px] text-[#7C6C70]">0 / 10 min to +50 coins</span>
+                </div>
+                <div class="w-full h-3 bg-white/80 rounded-full overflow-hidden border border-[#E8DFD8] p-0.5">
+                  <div id="coin-reward-progress-bar" class="h-full bg-gradient-to-r from-[#FFD1DC] to-[#FFB7C5] rounded-full transition-all duration-500 w-0"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Middle/Right Column: Main Squishy Blob Companion Bento -->
+            <div class="col-span-12 lg:col-span-7 flex flex-col h-full">
+              <div id="blob-stage-viewport" class="bento-card-main relative flex-1 min-h-[480px] flex flex-col items-center justify-center p-8 overflow-hidden rounded-[32px] border border-[#E8DFD8] shadow-xl">
+                
+                <!-- Squishy Blob Stage Container -->
+                <div class="blob-stage relative my-auto">
+                  <div id="dash-blob-container" class="blob-container">
+                    <!-- The squishy animated blob shape -->
+                    <div id="blob-character"></div>
+
+                    <!-- Face expression layer -->
+                    <div id="dash-blob-face" class="blob-face-layer">( ^ ‿ ^ )</div>
+
+                    <!-- Hat / accessory layer -->
+                    <div id="dash-blob-hat" class="blob-hat-layer"></div>
+                  </div>
+                </div>
+
+                <!-- Speech Bubble -->
+                <div class="absolute top-6 left-6 md:top-8 md:left-8 z-40 max-w-xs">
+                  <div class="speech-bubble relative shadow-md">
+                    <p class="text-sm font-bold text-[#33272A] leading-snug speech-bubble-text">
+                      Let's focus together! I am squishy and ready! 💖
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Customization Shop Hotspot Button -->
+                <button data-open-shop class="absolute top-6 right-6 md:top-8 md:right-8 z-40 flex items-center gap-2 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-[#E8DFD8] shadow-md text-sm font-bold text-[#33272A] hover:bg-[#FAF7F2] transition-all cursor-pointer">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">palette</span>
+                  <span>Squishy Shop</span>
+                </button>
+
+                <!-- Bottom Intentions Quick Glance -->
+                <div class="w-full max-w-md bg-white/85 backdrop-blur-md rounded-2xl p-4 border border-[#E8DFD8] shadow-xs mt-auto">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-[#7C6C70]">Current Intention</span>
+                    <span class="text-[10px] text-[#FFB7C5] font-bold task-completed-count">0/3 Completed</span>
+                  </div>
+                  <div id="dashboard-tasks-container" class="space-y-2">
+                    <!-- Rendered by app.js -->
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Row: Session Reminders & Google Calendar Widget -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Custom Session Reminders -->
+            <div class="bento-card p-6 flex flex-col gap-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E8DFD8]">
+                <h3 class="text-sm font-bold text-[#33272A] flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">notifications_active</span>
+                  <span>Session Reminders</span>
+                </h3>
+                <div class="flex gap-2">
+                  <input id="reminder-text-input" type="text" placeholder="e.g. Drink a glass of water 💧" class="px-3 py-1.5 bg-[#FAF7F2] border border-[#E8DFD8] rounded-xl text-xs font-semibold focus:outline-none focus:border-[#FFB7C5] w-48 sm:w-56" />
+                  <input id="reminder-minute-input" type="number" value="10" min="1" max="60" class="px-2.5 py-1.5 bg-[#FAF7F2] border border-[#E8DFD8] rounded-xl text-xs font-semibold w-16 focus:outline-none focus:border-[#FFB7C5]" />
+                  <button id="btn-add-reminder" class="px-3 py-1.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white rounded-xl text-xs font-bold transition-all cursor-pointer">
+                    + Add
+                  </button>
+                </div>
+              </div>
+
+              <div id="custom-reminders-container" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <!-- Rendered by app.js -->
+              </div>
+            </div>
+
+            <!-- Google Calendar Events Widget -->
+            <div class="bento-card p-6 flex flex-col gap-4">
+              <div class="flex justify-between items-center pb-2 border-b border-[#E8DFD8]">
+                <h3 class="text-sm font-bold text-[#33272A] flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">calendar_month</span>
+                  <span>Google Calendar Schedule</span>
+                </h3>
+                <button onclick="fetchGoogleCalendarEvents()" class="flex items-center gap-1 px-3 py-1 bg-[#FFF1C5] hover:bg-[#FFE89C] text-[#33272A] border border-[#FFE89C] rounded-xl text-xs font-bold transition-all cursor-pointer">
+                  <span class="material-symbols-outlined text-[16px]">sync</span>
+                  <span>Sync Events</span>
+                </button>
+              </div>
+
+              <div id="google-calendar-container" class="space-y-2 max-h-[160px] overflow-y-auto pr-1">
+                <div class="p-3 bg-[#FAF7F2] rounded-2xl border border-[#E8DFD8] text-xs text-[#7C6C70] italic text-center">
+                  Sign in with Google to load upcoming events from Google Calendar.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: SQUISHY STUDIO & CUSTOMIZER        -->
+        <!-- ========================================== -->
+        <section id="view-blob-studio" class="view-section p-2 flex-col w-full flex-1 gap-6">
+          <div class="flex justify-between items-end mb-1">
+            <div>
+              <span class="text-xs text-[#7C6C70] tracking-widest uppercase font-bold">Blob Studio</span>
+              <h1 class="text-3xl text-[#33272A] font-bold font-heading">Squishy Companion Customizer</h1>
+            </div>
+            <button data-open-shop class="flex items-center gap-2 px-5 py-2.5 bg-[#FFB7C5] text-white rounded-2xl text-xs font-bold hover:bg-[#FF9EAF] transition-all cursor-pointer shadow-md">
+              <span class="material-symbols-outlined text-[18px]">storefront</span>
+              <span>Open Full Catalog</span>
+            </button>
+          </div>
+
+          <div class="flex-1 grid grid-cols-12 gap-6 items-stretch">
+            
+            <!-- Left Panel: Large Blob Display -->
+            <div class="col-span-12 lg:col-span-6 flex flex-col gap-6">
+              
+              <div class="bento-card-main relative flex-1 min-h-[440px] flex flex-col items-center justify-center p-8 overflow-hidden rounded-[32px] border border-[#E8DFD8] shadow-xl">
+                
+                <div class="blob-stage relative my-auto">
+                  <div id="studio-blob-container" class="blob-container">
+                    <div id="studio-blob-character" style="background-color: var(--blob-bg);"></div>
+                    <div id="studio-blob-face" class="blob-face-layer">( ^ ‿ ^ )</div>
+                    <div id="studio-blob-hat" class="blob-hat-layer"></div>
+                  </div>
+                </div>
+
+                <div class="absolute top-6 left-6 z-40 max-w-sm">
+                  <div class="speech-bubble text-center shadow-lg">
+                    <p class="text-sm font-bold text-[#33272A] speech-bubble-text">I love my pastel squishy colors! 🌸</p>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Currently Equipped Summary Bar -->
+              <div class="bento-card p-5 flex flex-col gap-3">
+                <h3 class="text-xs uppercase tracking-widest font-bold text-[#7C6C70] flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[18px] text-[#FFB7C5]">checkroom</span>
+                  <span>Currently Equipped Customizations</span>
+                </h3>
+                <div id="equipped-slots-panel" class="grid grid-cols-3 gap-3">
+                  <!-- Rendered dynamically by app.js -->
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Panel: Shop Catalog Grid -->
+            <div class="col-span-12 lg:col-span-6 flex flex-col">
+              <div class="bento-card flex-1 p-6 flex flex-col gap-4 max-h-[640px]">
+                <div class="flex justify-between items-center pb-2 border-b border-[#E8DFD8]">
+                  <div>
+                    <h2 class="text-lg text-[#33272A] font-bold font-heading">Wardrobe & Style Catalog</h2>
+                    <p class="text-xs text-[#7C6C70]">Unlock pastel colors, expressions & hats with coins</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] text-[#7C6C70] font-bold uppercase">Balance</span>
+                    <div class="text-sm text-[#FFB7C5] font-bold header-coins-balance">1,500 Coins</div>
+                  </div>
+                </div>
+
+                <!-- Category Tabs -->
+                <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+                  <button data-shop-category="all" class="px-4 py-1.5 rounded-full bg-[#FFB7C5] text-white text-xs font-bold whitespace-nowrap cursor-pointer">All</button>
+                  <button data-shop-category="colors" class="px-4 py-1.5 rounded-full bg-[#F3EFEA] text-[#7C6C70] text-xs font-bold whitespace-nowrap cursor-pointer">🎨 Colors</button>
+                  <button data-shop-category="faces" class="px-4 py-1.5 rounded-full bg-[#F3EFEA] text-[#7C6C70] text-xs font-bold whitespace-nowrap cursor-pointer">😊 Faces</button>
+                  <button data-shop-category="hats" class="px-4 py-1.5 rounded-full bg-[#F3EFEA] text-[#7C6C70] text-xs font-bold whitespace-nowrap cursor-pointer">🎩 Hats</button>
+                </div>
+
+                <!-- Catalog Items Grid -->
+                <div id="inline-shop-catalog-grid" class="flex-1 overflow-y-auto pr-1 space-y-3">
+                  <!-- Rendered dynamically by app.js -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 3: MY INTENTIONS / TASKS             -->
+        <!-- ========================================== -->
+        <section id="view-tasks" class="view-section p-2 flex-col w-full flex-1 gap-6">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3 mb-1">
+            <div>
+              <span class="text-xs text-[#7C6C70] tracking-widest uppercase font-bold">Goal Tracker & Workspace</span>
+              <h1 class="text-3xl text-[#33272A] font-bold font-heading">Daily Focus Intentions</h1>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <!-- Tasks View Toggle: Local vs Google Tasks -->
+              <div class="flex bg-[#FAF7F2] p-1 rounded-2xl border border-[#E8DFD8]">
+                <button id="task-mode-local-btn" onclick="switchTaskMode('local')" class="px-3.5 py-1.5 font-bold text-xs rounded-xl bg-[#FFB7C5] text-white transition-all cursor-pointer">
+                  Local Intentions
+                </button>
+                <button id="task-mode-google-btn" onclick="switchTaskMode('google')" class="px-3.5 py-1.5 font-bold text-xs rounded-xl text-[#7C6C70] hover:text-[#33272A] transition-all cursor-pointer flex items-center gap-1.5">
+                  <span>📋 Google Tasks</span>
+                </button>
+              </div>
+
+              <div class="text-xs font-bold text-[#7C6C70] task-completed-count">
+                0 / 0 Complete
+              </div>
+            </div>
+          </div>
+
+          <div class="bento-card p-6 flex flex-col gap-6 flex-1">
+            <!-- Task Add Input -->
+            <div class="flex gap-3">
+              <input data-task-input type="text" placeholder="Add a new intention or goal..." class="flex-1 px-4 py-3 bg-[#FAF7F2] border border-[#E8DFD8] rounded-2xl text-sm font-semibold focus:outline-none focus:border-[#FFB7C5]" />
+              <button data-add-task class="px-6 py-3 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold rounded-2xl text-sm transition-all shadow-sm cursor-pointer">
+                + Add Goal
+              </button>
+            </div>
+
+            <!-- Google Tasks Sync Info Bar (Hidden when in local mode) -->
+            <div id="google-tasks-banner" class="hidden p-3 bg-[#FFF1C5]/50 border border-[#FFE89C] rounded-2xl flex items-center justify-between gap-2 text-xs">
+              <div class="flex items-center gap-2 text-[#33272A] font-bold">
+                <span class="text-base">📋</span>
+                <span>Synced with your Google Tasks Account</span>
+              </div>
+              <button onclick="fetchGoogleTasks()" class="px-3 py-1 bg-[#FFB7C5] text-white rounded-xl font-bold text-xs hover:bg-[#FF9EAF] transition-all cursor-pointer flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">sync</span>
+                <span>Sync Now</span>
+              </button>
+            </div>
+
+            <!-- Task List Container -->
+            <div id="full-tasks-container" class="space-y-3 flex-1 overflow-y-auto pr-1">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 4: FOCUS INSIGHTS                     -->
+        <!-- ========================================== -->
+        <section id="view-stats" class="view-section p-2 flex-col w-full flex-1 gap-6">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-1">
+            <div>
+              <span class="text-xs text-[#7C6C70] tracking-widest uppercase font-bold">Analytics & History</span>
+              <h1 class="text-3xl text-[#33272A] font-bold font-heading">Focus Insights Dashboard</h1>
+            </div>
+            
+            <button id="btn-export-csv" onclick="exportFocusDataCSV()" class="flex items-center gap-2 px-5 py-2.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold text-xs rounded-2xl transition-all cursor-pointer shadow-md active:scale-95">
+              <span class="material-symbols-outlined text-[18px]">download</span>
+              <span>Export Data (.CSV)</span>
+            </button>
+          </div>
+
+          <!-- Quick Stats Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bento-card p-5 flex flex-col gap-1">
+              <span class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider">Total Focus Time</span>
+              <h2 id="stat-total-hours" class="text-3xl font-bold font-heading text-[#33272A]">0 hrs</h2>
+              <p class="text-[11px] text-[#7C6C70]">All-time active work sessions</p>
+            </div>
+
+            <div class="bento-card p-5 flex flex-col gap-1">
+              <span class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider">7-Day Daily Avg</span>
+              <h2 id="stat-daily-avg" class="text-3xl font-bold font-heading text-[#FFB7C5]">0 min/day</h2>
+              <p class="text-[11px] text-[#7C6C70]">Average focus time this week</p>
+            </div>
+
+            <div class="bento-card p-5 flex flex-col gap-1">
+              <span class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider">Current Streak</span>
+              <h2 id="stat-streak-days" class="text-3xl font-bold font-heading text-[#33272A]">5 Days</h2>
+              <p class="text-[11px] text-[#7C6C70]">Consecutive daily goals met</p>
+            </div>
+
+            <div class="bento-card p-5 flex flex-col gap-1">
+              <span class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider">Total Coins Earned</span>
+              <h2 id="stat-total-coins" class="text-3xl font-bold font-heading text-[#FFB7C5]">300</h2>
+              <p class="text-[11px] text-[#7C6C70]">Available for squishy items</p>
+            </div>
+          </div>
+
+          <!-- Pastel 7-Day Bar Chart Card -->
+          <div class="bento-card p-6 flex flex-col gap-4">
+            <div class="flex justify-between items-center pb-2 border-b border-[#E8DFD8]">
+              <div>
+                <h3 class="text-base font-bold font-heading text-[#33272A] flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">bar_chart</span>
+                  <span>Study History (Past 7 Days)</span>
+                </h3>
+                <p class="text-xs text-[#7C6C70]">Daily focus time in minutes</p>
+              </div>
+              <span class="text-xs font-bold text-[#FFB7C5] bg-[#FFD1DC]/40 px-3 py-1 rounded-full border border-[#FFB7C5]/30">
+                Cute Pastel Scale
+              </span>
+            </div>
+
+            <!-- Bar Chart Component Container -->
+            <div id="insights-bar-chart" class="w-full h-56 pt-6 pb-2 flex items-end justify-between gap-3 px-2">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+          </div>
+
+          <!-- Daily Study Log History Table -->
+          <div class="bento-card p-6 flex flex-col gap-4">
+            <div class="flex justify-between items-center pb-2 border-b border-[#E8DFD8]">
+              <h3 class="text-base font-bold font-heading text-[#33272A]">Detailed Study Log</h3>
+              <span class="text-xs text-[#7C6C70] font-medium">Auto-saved to LocalStorage</span>
+            </div>
+            <div id="insights-history-table" class="space-y-2">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- VIEW 5: SCHEDULE & CALENDAR               -->
+        <!-- ========================================== -->
+        <section id="view-calendar" class="view-section p-2 flex-col w-full flex-1 gap-6">
+          <div class="flex justify-between items-end mb-2">
+            <div>
+              <span class="text-xs text-[#7C6C70] tracking-widest uppercase font-bold">Integration</span>
+              <h1 class="text-3xl text-[#33272A] font-bold font-heading">Google Calendar & Reminders</h1>
+            </div>
+            <button id="btn-connect-calendar" class="px-5 py-2.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold rounded-2xl text-xs transition-all shadow-xs cursor-pointer">
+              🔗 Link Google Calendar
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+            <div class="bento-card p-6 flex flex-col gap-4">
+              <h3 class="text-sm font-bold text-[#33272A]">Calendar Status</h3>
+              <p class="text-xs text-[#7C6C70]">Sync your work schedule so your squishy companion alerts you ahead of upcoming meetings.</p>
+              
+              <div id="calendar-connection-status" class="p-3 bg-[#FAF7F2] rounded-2xl border border-[#E8DFD8] flex items-center gap-2 text-xs text-[#7C6C70]">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                <span>Not connected yet. Click link button above.</span>
+              </div>
+
+              <button id="btn-sync-calendar" class="px-4 py-2 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold rounded-xl text-xs transition-all cursor-pointer w-fit">
+                🔄 Sync Events Now
+              </button>
+            </div>
+
+            <div class="bento-card p-6 flex flex-col gap-4">
+              <h3 class="text-sm font-bold text-[#33272A]">Upcoming Events</h3>
+              <div id="calendar-events-list" class="space-y-3 flex-1">
+                <!-- Rendered by app.js -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- SHOP SIDEBAR DRAWER                        -->
+    <!-- ========================================== -->
+    <aside id="shop-drawer" class="w-96 bg-[#FAF7F2] shadow-2xl border-l border-[#E8DFD8] flex flex-col z-50 translate-x-full transition-transform duration-500 ease-in-out absolute right-0 top-0 bottom-0">
+      <div class="p-6 flex flex-col gap-3 border-b border-[#E8DFD8]">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl text-[#33272A] font-bold font-heading">Squishy Shop</h2>
+          <button id="btn-close-shop" class="text-[#7C6C70] hover:text-[#33272A] transition-colors cursor-pointer">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <p class="text-xs text-[#7C6C70]">Customize your squishy blob with hard-earned focus coins.</p>
+        
+        <!-- Category Tabs -->
+        <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide mt-1">
+          <button data-shop-category="all" class="px-4 py-1.5 rounded-full bg-[#FFB7C5] text-white text-xs font-bold whitespace-nowrap cursor-pointer">All</button>
+          <button data-shop-category="colors" class="px-4 py-1.5 rounded-full bg-[#F3EFEA] text-[#7C6C70] text-xs font-bold whitespace-nowrap cursor-pointer">🎨 Colors</button>
+          <button data-shop-category="faces" class="px-4 py-1.5 rounded-full bg-[#F3EFEA] text-[#7C6C70] text-xs font-bold whitespace-nowrap cursor-pointer">😊 Faces</button>
+          <button data-shop-category="hats" class="px-4 py-1.5 rounded-full bg-[#F3EFEA] text-[#7C6C70] text-xs font-bold whitespace-nowrap cursor-pointer">🎩 Hats</button>
+        </div>
+      </div>
+
+      <!-- Shop Item List Container -->
+      <div id="shop-catalog-grid" class="flex-1 overflow-y-auto p-6 space-y-4">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Shop Footer Balance -->
+      <div class="p-6 bg-[#F3EFEA] border-t border-[#E8DFD8]">
+        <div class="flex justify-between items-center p-4 bg-white/90 rounded-2xl border border-[#E8DFD8]">
+          <div>
+            <span class="text-xs text-[#7C6C70] font-bold uppercase tracking-wider">Your Balance</span>
+            <h3 class="text-lg text-[#FFB7C5] font-bold header-coins-balance">1,500 Coins</h3>
+          </div>
+          <button id="drawer-bonus-btn" onclick="claimBonusCoins()" class="bonus-claim-btn px-4 py-2 bg-[#E8DFD8] text-[#7C6C70] rounded-xl text-xs font-bold transition-all cursor-not-allowed opacity-80 shadow-xs flex items-center gap-1" title="Focus 50 minutes in current session to unlock +100 coins">
+            <span class="bonus-icon">🔒</span>
+            <span class="bonus-text">+100 Bonus</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- ========================================== -->
+    <!-- AUTH MODAL / OVERLAY                       -->
+    <!-- ========================================== -->
+    <div id="auth-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+      <div class="bento-card w-full max-w-md p-6 bg-white flex flex-col gap-5 relative animate-in fade-in zoom-in duration-200">
+        <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-[#7C6C70] hover:text-[#33272A] cursor-pointer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <div class="text-center">
+          <div class="w-12 h-12 rounded-2xl bg-[#FFD1DC] text-2xl mx-auto flex items-center justify-center mb-2">🌸</div>
+          <h2 class="text-2xl font-bold font-heading text-[#33272A]">CozyFocus Account</h2>
+          <p class="text-xs text-[#7C6C70]">Sync your focus progress, squishy items & settings across devices</p>
+        </div>
+
+        <!-- Auth Tabs -->
+        <div class="flex border-b border-[#E8DFD8]">
+          <button id="auth-tab-login" onclick="switchAuthTab('login')" class="flex-1 py-2 font-bold text-xs text-[#FFB7C5] border-b-2 border-[#FFB7C5]">Log In</button>
+          <button id="auth-tab-signup" onclick="switchAuthTab('signup')" class="flex-1 py-2 font-bold text-xs text-[#7C6C70] border-b-2 border-transparent">Sign Up</button>
+          <button id="auth-tab-reset" onclick="switchAuthTab('reset')" class="flex-1 py-2 font-bold text-xs text-[#7C6C70] border-b-2 border-transparent">Reset</button>
+        </div>
+
+        <!-- Social Auth (Google Sign In) -->
+        <button onclick="handleGoogleSignIn()" class="w-full py-3 px-4 bg-white hover:bg-[#F3EFEA] border border-[#E8DFD8] rounded-2xl font-bold text-xs text-[#33272A] flex items-center justify-center gap-3 shadow-xs transition-all active:scale-95 cursor-pointer">
+          <svg class="w-4 h-4" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+
+        <div class="flex items-center gap-2 my-1">
+          <div class="h-px bg-[#E8DFD8] flex-1"></div>
+          <span class="text-[10px] text-[#7C6C70] font-bold uppercase">or email</span>
+          <div class="h-px bg-[#E8DFD8] flex-1"></div>
+        </div>
+
+        <!-- Form Views -->
+        <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="flex flex-col gap-3">
+          <div id="field-email" class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold text-[#7C6C70] uppercase">Email Address</label>
+            <input type="email" id="auth-input-email" required placeholder="you@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-[#E8DFD8] text-xs font-medium focus:outline-none focus:border-[#FFB7C5]" />
+          </div>
+
+          <div id="field-password" class="flex flex-col gap-1">
+            <label class="text-[10px] font-bold text-[#7C6C70] uppercase">Password</label>
+            <input type="password" id="auth-input-password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl border border-[#E8DFD8] text-xs font-medium focus:outline-none focus:border-[#FFB7C5]" />
+          </div>
+
+          <button type="submit" id="auth-submit-btn" class="w-full py-3 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold text-xs rounded-2xl shadow-md transition-all active:scale-95 cursor-pointer mt-2">
+            Log In
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SETTINGS & PROFILE MODAL                  -->
+    <!-- ========================================== -->
+    <div id="settings-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+      <div class="bento-card w-full max-w-lg p-6 bg-white flex flex-col gap-5 relative animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
+        <button onclick="closeSettingsModal()" class="absolute top-5 right-5 text-[#7C6C70] hover:text-[#33272A] cursor-pointer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+
+        <div class="flex items-center gap-3 pb-3 border-b border-[#E8DFD8]">
+          <span class="material-symbols-outlined text-2xl text-[#FFB7C5]">tune</span>
+          <div>
+            <h2 class="text-xl font-bold font-heading text-[#33272A]">Settings & Profile</h2>
+            <p class="text-xs text-[#7C6C70]">Manage notifications, themes, and account</p>
+          </div>
+        </div>
+
+        <!-- Modal Tabs -->
+        <div class="flex gap-2 border-b border-[#E8DFD8] overflow-x-auto pb-1">
+          <button onclick="switchSettingsTab('profile')" id="stab-profile" class="px-3.5 py-1.5 font-bold text-xs rounded-xl bg-[#FFB7C5] text-white">Profile & Account</button>
+          <button onclick="switchSettingsTab('appearance')" id="stab-appearance" class="px-3.5 py-1.5 font-bold text-xs rounded-xl bg-[#F3EFEA] text-[#7C6C70]">Appearance</button>
+          <button onclick="switchSettingsTab('notifications')" id="stab-notifications" class="px-3.5 py-1.5 font-bold text-xs rounded-xl bg-[#F3EFEA] text-[#7C6C70]">Notifications</button>
+        </div>
+
+        <!-- TAB 1: PROFILE & ACCOUNT -->
+        <div id="scontent-profile" class="flex flex-col gap-4">
+          <div id="settings-profile-info" class="flex items-center gap-4 p-4 bg-[#FAF7F2] rounded-2xl border border-[#E8DFD8]">
+            <div id="profile-avatar-container" class="w-14 h-14 rounded-2xl bg-[#FFD1DC] border border-[#FFB7C5] flex items-center justify-center text-2xl font-bold text-[#33272A] overflow-hidden shadow-xs">
+              👤
+            </div>
+            <div class="flex-1 overflow-hidden">
+              <h3 id="profile-display-name" class="font-bold text-sm text-[#33272A] truncate">Guest Focus User</h3>
+              <p id="profile-display-email" class="text-xs text-[#7C6C70] truncate">Browsing locally (Guest Mode)</p>
+            </div>
+          </div>
+
+          <!-- Change Password Section -->
+          <div class="p-4 bg-[#FAF7F2] rounded-2xl border border-[#E8DFD8] flex flex-col gap-3">
+            <h4 class="text-xs font-bold text-[#33272A] uppercase tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-[#FFB7C5]">lock_reset</span>
+              <span>Change Password</span>
+            </h4>
+            
+            <form onsubmit="handlePasswordUpdate(event)" class="flex flex-col gap-2.5">
+              <div>
+                <label class="text-[10px] font-bold text-[#7C6C70] uppercase block mb-1">Current Password</label>
+                <input type="password" id="input-current-password" placeholder="••••••••" class="w-full px-3 py-2 bg-white rounded-xl border border-[#E8DFD8] text-xs font-semibold focus:outline-none focus:border-[#FFB7C5]" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div>
+                  <label class="text-[10px] font-bold text-[#7C6C70] uppercase block mb-1">New Password</label>
+                  <input type="password" id="input-new-password" placeholder="••••••••" class="w-full px-3 py-2 bg-white rounded-xl border border-[#E8DFD8] text-xs font-semibold focus:outline-none focus:border-[#FFB7C5]" />
+                </div>
+                <div>
+                  <label class="text-[10px] font-bold text-[#7C6C70] uppercase block mb-1">Confirm New Password</label>
+                  <input type="password" id="input-confirm-password" placeholder="••••••••" class="w-full px-3 py-2 bg-white rounded-xl border border-[#E8DFD8] text-xs font-semibold focus:outline-none focus:border-[#FFB7C5]" />
+                </div>
+              </div>
+              <button type="submit" id="btn-update-password" class="mt-1 py-2 px-4 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold text-xs rounded-xl shadow-xs transition-all cursor-pointer text-center">
+                Update Password
+              </button>
+            </form>
+          </div>
+
+          <div id="profile-auth-actions" class="flex gap-3">
+            <button id="profile-login-btn" onclick="openAuthModal()" class="flex-1 py-2.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold text-xs rounded-2xl shadow-xs transition-all cursor-pointer">
+              Sign In / Sync Data
+            </button>
+            <button id="profile-logout-btn" onclick="handleUserLogout()" class="hidden flex-1 py-2.5 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold text-xs rounded-2xl border border-[#E8DFD8] transition-all cursor-pointer">
+              Log Out
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 2: APPEARANCE & THEMES -->
+        <div id="scontent-appearance" class="hidden flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold text-[#7C6C70] uppercase tracking-wider">Pastel Color Palette Engine</h4>
+            <span class="text-[10px] font-bold text-[#FFB7C5] bg-[#FFD1DC]/40 px-2.5 py-1 rounded-full border border-[#FFB7C5]/30">9 Distinct Themes</span>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-2.5 max-h-[320px] overflow-y-auto pr-1">
+            <!-- Theme 1: Default Pastel Pink -->
+            <button onclick="setAppTheme('pastel')" id="theme-btn-pastel" class="p-2.5 rounded-2xl border-2 border-[#FFB7C5] bg-[#FAF7F2] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#FFD1DC] via-[#FFF1C5] to-[#FFB7C5] border border-[#E8DFD8]"></div>
+              <span class="font-bold text-[11px] text-[#33272A] text-center">Default Pastel</span>
+            </button>
+
+            <!-- Theme 2: Minimal White -->
+            <button onclick="setAppTheme('dark')" id="theme-btn-dark" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#FFFFFF] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#FFFFFF] via-[#F8FAFC] to-[#E2E8F0] border border-[#CBD5E1]"></div>
+              <span class="font-bold text-[11px] text-[#0F172A] text-center">Minimal White</span>
+            </button>
+
+            <!-- Theme 3: Blue Pastel -->
+            <button onclick="setAppTheme('blue')" id="theme-btn-blue" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#F0F8FF] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#B5D5FF] via-[#E6F2FF] to-[#7EB6FF] border border-[#CBD5E1]"></div>
+              <span class="font-bold text-[11px] text-[#1E293B] text-center">Blue Pastel</span>
+            </button>
+
+            <!-- Theme 4: Green Pastel -->
+            <button onclick="setAppTheme('green')" id="theme-btn-green" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#F2F9F5] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#A8E6CF] via-[#E4F3EC] to-[#72D0A5] border border-[#CDE3D8]"></div>
+              <span class="font-bold text-[11px] text-[#1D352B] text-center">Green Pastel</span>
+            </button>
+
+            <!-- Theme 5: Purple Pastel -->
+            <button onclick="setAppTheme('purple')" id="theme-btn-purple" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#F8F5FF] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#D1C4E9] via-[#F0E8FF] to-[#B388FF] border border-[#E1D5F5]"></div>
+              <span class="font-bold text-[11px] text-[#2D1A47] text-center">Purple Pastel</span>
+            </button>
+
+            <!-- Theme 6: Orange Pastel -->
+            <button onclick="setAppTheme('orange')" id="theme-btn-orange" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#FFF8F5] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#FFDAC1] via-[#FFEFE8] to-[#FF9E7D] border border-[#F7DCD0]"></div>
+              <span class="font-bold text-[11px] text-[#4A281E] text-center">Orange Pastel</span>
+            </button>
+
+            <!-- Theme 7: Yellow Pastel -->
+            <button onclick="setAppTheme('yellow')" id="theme-btn-yellow" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#FCFAF2] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#FFF1C5] via-[#F7F3E1] to-[#E6C85A] border border-[#E8E0C5]"></div>
+              <span class="font-bold text-[11px] text-[#3B331A] text-center">Yellow Pastel</span>
+            </button>
+
+            <!-- Theme 8: Rainbow Pastel -->
+            <button onclick="setAppTheme('rainbow')" id="theme-btn-rainbow" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#FAF7FC] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#FFB7B2] via-[#E8C5FF] to-[#FF80BF] border border-[#E5D0F0]"></div>
+              <span class="font-bold text-[11px] text-[#331A38] text-center">Rainbow Pastel</span>
+            </button>
+
+            <!-- Theme 9: Red Pastel -->
+            <button onclick="setAppTheme('red')" id="theme-btn-red" class="p-2.5 rounded-2xl border border-[#E8DFD8] bg-[#FFF5F5] flex flex-col items-center gap-1.5 cursor-pointer text-left transition-all hover:scale-102">
+              <div class="w-full h-7 rounded-xl bg-gradient-to-r from-[#FFB3C1] via-[#FFEBEB] to-[#FF6B81] border border-[#F2C9D1]"></div>
+              <span class="font-bold text-[11px] text-[#3D1A21] text-center">Red Pastel</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 3: NOTIFICATIONS -->
+        <div id="scontent-notifications" class="hidden flex flex-col gap-4">
+          <div class="p-3 bg-[#FAF7F2] rounded-2xl border border-[#E8DFD8] flex items-center justify-between">
+            <div>
+              <h4 class="font-bold text-xs text-[#33272A]">Focus Session Reminders</h4>
+              <p class="text-[11px] text-[#7C6C70]">Alert when work or break timers complete</p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="toggle-session-reminders" onchange="toggleNotificationPref('sessionReminders', this.checked)" class="sr-only peer" checked>
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FFB7C5]"></div>
+            </label>
+          </div>
+
+          <div class="p-3 bg-[#FAF7F2] rounded-2xl border border-[#E8DFD8] flex items-center justify-between">
+            <div>
+              <h4 class="font-bold text-xs text-[#33272A]">Break Notifications</h4>
+              <p class="text-[11px] text-[#7C6C70]">Desktop push notification for break times</p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="toggle-break-notifications" onchange="toggleNotificationPref('breakNotifications', this.checked)" class="sr-only peer" checked>
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#FFB7C5]"></div>
+            </label>
+          </div>
+
+          <button onclick="requestBrowserNotificationPermission()" class="py-2 px-4 bg-[#FFD1DC] hover:bg-[#FFB7C5] text-[#33272A] font-bold text-xs rounded-2xl transition-all self-start">
+            🔔 Test & Grant Desktop Push Permission
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- App Main Logic -->
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

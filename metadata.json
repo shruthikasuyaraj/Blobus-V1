@@ -1,0 +1,8 @@
+{
+  "name": "Blobus",
+  "description": "A cozy pastel productivity sanctuary featuring a customizable squishy morphing blob companion, focus timer, coin shop, task management, tab visibility penalty guard, and calendar reminders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

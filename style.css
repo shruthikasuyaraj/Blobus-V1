@@ -1,0 +1,560 @@
+/* CozyFocus Master Stylesheet - Pastel Squishy Blob Theme */
+@import "tailwindcss";
+
+:root, body[data-theme="pastel"], body.theme-pastel {
+  --bg-surface: #FAF7F2;
+  --surface-card: #FFFFFF;
+  --surface-low: #F3EFEA;
+  --surface-container: #EAE3DA;
+  --accent-color: #FFB7C5;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #FF9EAF;
+  --accent-soft-bg: #FFD1DC;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #FFD1DC;
+  --pastel-mint: #B2FBA5;
+  --pastel-lavender: #E6E6FA;
+  --pastel-blue: #AEC6CF;
+  --pastel-yellow: #FFF1C5;
+  --pastel-peach: #FFDAC1;
+  --text-main: #33272A;
+  --text-muted: #7C6C70;
+  --border-light: #E8DFD8;
+  
+  --blob-bg: #FFD1DC;
+  --blob-shadow: rgba(255, 182, 193, 0.45);
+}
+
+/* 2. Minimal White Theme */
+body[data-theme="dark"], body.theme-dark {
+  --bg-surface: #FFFFFF;
+  --surface-card: #FFFFFF;
+  --surface-low: #F8FAFC;
+  --surface-container: #F1F5F9;
+  --accent-color: #0F172A;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #334155;
+  --accent-soft-bg: #E2E8F0;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #E2E8F0;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+  --border-light: #E2E8F0;
+  --blob-bg: #E2E8F0;
+  --blob-shadow: rgba(15, 23, 42, 0.15);
+}
+
+/* 3. Blue Pastel */
+body[data-theme="blue"], body.theme-blue {
+  --bg-surface: #F0F8FF;
+  --surface-card: #FFFFFF;
+  --surface-low: #E6F2FF;
+  --surface-container: #D0E4FF;
+  --accent-color: #7EB6FF;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #5A9EFF;
+  --accent-soft-bg: #B5D5FF;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #B5D5FF;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --border-light: #CBD5E1;
+  --blob-bg: #B5D5FF;
+  --blob-shadow: rgba(126, 182, 255, 0.45);
+}
+
+/* 4. Green Pastel / Mint */
+body[data-theme="green"], body.theme-green, body[data-theme="mint"], body.theme-mint {
+  --bg-surface: #F2F9F5;
+  --surface-card: #FFFFFF;
+  --surface-low: #E4F3EC;
+  --surface-container: #D2E9DF;
+  --accent-color: #72D0A5;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #52C090;
+  --accent-soft-bg: #A8E6CF;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #A8E6CF;
+  --text-main: #1D352B;
+  --text-muted: #567366;
+  --border-light: #CDE3D8;
+  --blob-bg: #A8E6CF;
+  --blob-shadow: rgba(114, 208, 165, 0.45);
+}
+
+/* 5. Purple Pastel */
+body[data-theme="purple"], body.theme-purple {
+  --bg-surface: #F8F5FF;
+  --surface-card: #FFFFFF;
+  --surface-low: #F0E8FF;
+  --surface-container: #E2D5FF;
+  --accent-color: #B388FF;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #9E6BFF;
+  --accent-soft-bg: #D1C4E9;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #D1C4E9;
+  --text-main: #2D1A47;
+  --text-muted: #6B5B82;
+  --border-light: #E1D5F5;
+  --blob-bg: #E1D5F5;
+  --blob-shadow: rgba(179, 136, 255, 0.45);
+}
+
+/* 6. Orange Pastel */
+body[data-theme="orange"], body.theme-orange {
+  --bg-surface: #FFF8F5;
+  --surface-card: #FFFFFF;
+  --surface-low: #FFEFE8;
+  --surface-container: #FFE0D1;
+  --accent-color: #FF9E7D;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #FF855E;
+  --accent-soft-bg: #FFDAC1;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #FFDAC1;
+  --text-main: #4A281E;
+  --text-muted: #8A6458;
+  --border-light: #F7DCD0;
+  --blob-bg: #FFDAC1;
+  --blob-shadow: rgba(255, 158, 125, 0.45);
+}
+
+/* 7. Yellow Pastel */
+body[data-theme="yellow"], body.theme-yellow {
+  --bg-surface: #FCFAF2;
+  --surface-card: #FFFFFF;
+  --surface-low: #F7F3E1;
+  --surface-container: #EFE8C8;
+  --accent-color: #E6C85A;
+  --accent-text-color: #3B331A;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #D9B738;
+  --accent-soft-bg: #FFF1C5;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #FFF1C5;
+  --text-main: #3B331A;
+  --text-muted: #7A7256;
+  --border-light: #E8E0C5;
+  --blob-bg: #FFF1C5;
+  --blob-shadow: rgba(230, 200, 90, 0.45);
+}
+
+/* 8. Rainbow Pastel */
+body[data-theme="rainbow"], body.theme-rainbow {
+  --bg-surface: #FAF7FC;
+  --surface-card: #FFFFFF;
+  --surface-low: #F5EEFA;
+  --surface-container: #EADEF7;
+  --accent-color: #FF80BF;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #FF5DAB;
+  --accent-soft-bg: #E8C5FF;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #E8C5FF;
+  --text-main: #331A38;
+  --text-muted: #75527D;
+  --border-light: #E5D0F0;
+  --blob-bg: #E8C5FF;
+  --blob-shadow: rgba(255, 128, 191, 0.45);
+}
+
+/* 9. Red Pastel */
+body[data-theme="red"], body.theme-red {
+  --bg-surface: #FFF5F5;
+  --surface-card: #FFFFFF;
+  --surface-low: #FFEBEB;
+  --surface-container: #FFD6D6;
+  --accent-color: #FF6B81;
+  --accent-text-color: #FFFFFF;
+  --accent-primary: var(--accent-color);
+  --accent-hover: #FF4763;
+  --accent-soft-bg: #FFB3C1;
+  --accent-text: var(--accent-text-color);
+
+  --primary-pink: var(--accent-color);
+  --primary-hover: var(--accent-hover);
+  --accent-soft: var(--accent-soft-bg);
+  --pastel-pink: #FFB3C1;
+  --text-main: #3D1A21;
+  --text-muted: #80525A;
+  --border-light: #F2C9D1;
+  --blob-bg: #FFB3C1;
+  --blob-shadow: rgba(255, 107, 129, 0.45);
+}
+
+body aside,
+body header,
+body .bento-card {
+  background-color: var(--surface-card);
+  color: var(--text-main);
+  border-color: var(--border-light);
+}
+
+body {
+  background-color: var(--bg-surface);
+  color: var(--text-main);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Quicksand', 'Plus Jakarta Sans', serif, sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-low);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-pink);
+}
+
+/* Pastel Cards */
+.bento-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-light);
+  border-radius: 2rem;
+  box-shadow: 0 8px 24px -4px rgba(80, 60, 65, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+  box-shadow: 0 12px 32px -4px rgba(80, 60, 65, 0.08);
+}
+
+.bento-card-main {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF0E6 100%);
+  border: 4px solid #FFFFFF;
+  border-radius: 2.5rem;
+  box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.02), 0 12px 36px rgba(80, 60, 65, 0.06);
+}
+
+/* Squishy Blob Companion CSS Engine */
+.blob-stage {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blob-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* The actual morphing squishy blob shape */
+#blob-character, #studio-blob-character {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--blob-bg);
+  border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
+  box-shadow: 0 20px 40px var(--blob-shadow), 
+              inset -12px -12px 24px rgba(0, 0, 0, 0.06), 
+              inset 12px 12px 24px rgba(255, 255, 255, 0.7);
+  animation: squish 7s ease-in-out infinite, float 4s ease-in-out infinite;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Keyframes for the organic squishy morphing effect */
+@keyframes squish {
+  0%, 100% {
+    border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%;
+  }
+  25% {
+    border-radius: 40% 60% 65% 35% / 55% 40% 60% 45%;
+  }
+  50% {
+    border-radius: 55% 45% 35% 65% / 40% 60% 45% 55%;
+  }
+  75% {
+    border-radius: 45% 55% 60% 40% / 60% 45% 50% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}
+
+/* Frozen/Upset State when tab-switched or penalized */
+.blob-container.blob-upset #blob-character,
+.blob-container.blob-upset #studio-blob-character {
+  animation-play-state: paused !important;
+  background-color: #D8B4F8 !important; /* turns upset lavender/indigo */
+  box-shadow: 0 15px 35px rgba(180, 140, 220, 0.5), inset 0 0 20px rgba(0,0,0,0.15) !important;
+  transform: scale(0.95);
+  filter: saturate(0.8);
+}
+
+.blob-container.blob-upset {
+  animation: jitter 0.3s ease-in-out 2;
+}
+
+@keyframes jitter {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px) rotate(-3deg); }
+  75% { transform: translateX(6px) rotate(3deg); }
+}
+
+/* Layer positioning inside the blob */
+.blob-face-layer {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #33272A;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.blob-hat-layer {
+  position: absolute;
+  z-index: 30;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.blob-hat-layer img, .blob-hat-layer svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+}
+
+/* Speech Bubble */
+.speech-bubble {
+  position: relative;
+  background: var(--surface-card, #FFFFFF);
+  border: 1.5px solid var(--border-light);
+  border-radius: 1.5rem;
+  padding: 0.875rem 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(80, 60, 65, 0.08);
+  margin-bottom: 12px;
+  animation: floatBubble 4s ease-in-out infinite;
+}
+
+/* Status Dot Gently Pulsing Animation */
+@keyframes statusDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(255, 183, 197, 0.7);
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.7;
+    box-shadow: 0 0 0 6px rgba(255, 183, 197, 0);
+  }
+}
+
+.status-dot-pulsing {
+  animation: statusDotPulse 1.5s ease-in-out infinite;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 2rem;
+  transform: rotate(45deg);
+  width: 16px;
+  height: 16px;
+  background: #FFFFFF;
+  border-right: 1.5px solid var(--border-light);
+  border-bottom: 1.5px solid var(--border-light);
+}
+
+@keyframes floatBubble {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* Nav Active Link */
+.nav-link.active {
+  background-color: var(--accent-color) !important;
+  color: var(--accent-text-color) !important;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* Dynamic Theme Accent Bindings */
+.bg-\[\#FFB7C5\],
+.bg-primary-pink,
+.active-accent-btn,
+#btn-start,
+#btn-add-reminder,
+#btn-add-task,
+.btn-accent {
+  background-color: var(--accent-color) !important;
+  color: var(--accent-text-color) !important;
+}
+
+/* Hover States */
+.hover\:bg-\[\#FF9EAF\]:hover,
+#btn-start:hover,
+#btn-add-reminder:hover {
+  filter: brightness(0.92);
+}
+
+/* Text accents */
+.text-\[\#FFB7C5\],
+.text-accent,
+.material-symbols-outlined.text-\[\#FFB7C5\],
+.task-completed-count {
+  color: var(--accent-color) !important;
+}
+
+/* Border accents */
+.border-\[\#FFB7C5\] {
+  border-color: var(--accent-color) !important;
+}
+
+/* Soft accent backgrounds & Badges */
+.bg-\[\#FFD1DC\],
+#tab-warning-badge,
+#header-auth-btn {
+  background-color: var(--accent-soft-bg) !important;
+  color: var(--text-main) !important;
+  border-color: var(--accent-color) !important;
+}
+
+/* Status dot pulsing color */
+.status-dot-pulsing {
+  background-color: var(--accent-color) !important;
+}
+
+/* Selected Theme Grid Button */
+.theme-btn-active {
+  border-color: var(--accent-color) !important;
+}
+
+/* Responsive view container */
+.view-section {
+  display: none;
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+.view-section.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Toast Notification */
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  background: #33272A;
+  color: #FAF7F2;
+  padding: 0.875rem 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}

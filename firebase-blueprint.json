@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile state including coins, streak, items, and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "coins": { "type": "number" },
+        "streak": { "type": "number" },
+        "totalFocusMinutes": { "type": "number" },
+        "equippedItems": {
+          "type": "object",
+          "properties": {
+            "colors": { "type": "string" },
+            "faces": { "type": "string" },
+            "hats": { "type": "string" }
+          }
+        },
+        "ownedItems": { "type": "array" },
+        "theme": { "type": "string" },
+        "notifications": {
+          "type": "object",
+          "properties": {
+            "sessionReminders": { "type": "boolean" },
+            "breakNotifications": { "type": "boolean" }
+          }
+        },
+        "subscriptionTier": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "UserFocusHistory": {
+      "title": "UserFocusHistory",
+      "description": "Daily focus logs per user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "dailyFocusHistory": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User account settings, customizations, and currency balance"
+    },
+    "/users/{userId}/history/focus": {
+      "schema": "UserFocusHistory",
+      "description": "User focus activity history"
+    }
+  }
+}
