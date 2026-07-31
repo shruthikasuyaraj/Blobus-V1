@@ -97,9 +97,9 @@ const state = {
   coinTimer: {
     activeWorkSeconds: 0 // Increments during active work, awards 50 coins per 600s (10 min)
   },
-  coins: 300, // 300 coins default for new users so they can immediately buy customization items!
-  streak: 5,
-  totalFocusMinutes: 124 * 60,
+  coins: 0,
+  streak: 0,
+  totalFocusMinutes: 0,
   tabSwitchCount: 0,
   dailyFocusHistory: {}, // { "YYYY-MM-DD": minutes }
   ownedItems: ['color-soft-pink', 'face-happy-smile', 'hat-sprout', 'color-pastel-mint'],
@@ -193,8 +193,88 @@ const SHOP_CATALOG = [
     shadowHex: 'rgba(255, 218, 193, 0.55)',
     description: 'Warm peach sorbet tone for sunset cozy vibes.'
   },
+  {
+    id: 'color-matcha-cream',
+    name: 'Matcha Green Cream',
+    category: 'colors',
+    cost: 220,
+    icon: '🍵',
+    colorHex: '#D4E09B',
+    shadowHex: 'rgba(212, 224, 155, 0.55)',
+    description: 'Calming green tea pastel tone for mindful focus.'
+  },
+  {
+    id: 'color-cotton-candy',
+    name: 'Cotton Candy Fluff',
+    category: 'colors',
+    cost: 280,
+    icon: '🍬',
+    colorHex: '#F2C6DE',
+    shadowHex: 'rgba(242, 198, 222, 0.55)',
+    description: 'Whimsical sweet pink-purple pastel dream.'
+  },
+  {
+    id: 'color-lilac-mist',
+    name: 'Lilac Fog Mist',
+    category: 'colors',
+    cost: 260,
+    icon: '🪻',
+    colorHex: '#D8B4F8',
+    shadowHex: 'rgba(216, 180, 248, 0.5)',
+    description: 'A mystical pastel violet for late night focus.'
+  },
+  {
+    id: 'color-strawberry-milk',
+    name: 'Strawberry Milkshake',
+    category: 'colors',
+    cost: 320,
+    icon: '🍓',
+    colorHex: '#FFC0CB',
+    shadowHex: 'rgba(255, 192, 203, 0.55)',
+    description: 'Rich strawberry cream tint full of sweetness.'
+  },
+  {
+    id: 'color-warm-cappuccino',
+    name: 'Warm Oat Cappuccino',
+    category: 'colors',
+    cost: 240,
+    icon: '☕',
+    colorHex: '#E6CCB2',
+    shadowHex: 'rgba(230, 204, 178, 0.55)',
+    description: 'Cozy roasted oat & coffee pastel hue.'
+  },
+  {
+    id: 'color-celestial-moon',
+    name: 'Midnight Starlight',
+    category: 'colors',
+    cost: 350,
+    icon: '🌙',
+    colorHex: '#C5D3E8',
+    shadowHex: 'rgba(197, 211, 232, 0.6)',
+    description: 'Dreamy starry night sky blue pastel.'
+  },
+  {
+    id: 'color-pistachio-sorbet',
+    name: 'Pistachio Gelato',
+    category: 'colors',
+    cost: 270,
+    icon: '🍨',
+    colorHex: '#C7E5C6',
+    shadowHex: 'rgba(199, 229, 198, 0.55)',
+    description: 'Smooth, creamy pistachio green pastel.'
+  },
+  {
+    id: 'color-bubblegum-pop',
+    name: 'Bubblegum Pop',
+    category: 'colors',
+    cost: 300,
+    icon: '🦩',
+    colorHex: '#FFB3D9',
+    shadowHex: 'rgba(255, 179, 217, 0.55)',
+    description: 'Vibrant rosy pastel full of playful pops.'
+  },
 
-  // --- FACES (Custom Expressions) ---
+  // --- FACES (Custom Expressions & Eyewear) ---
   {
     id: 'face-happy-smile',
     name: 'Happy Smile',
@@ -205,7 +285,7 @@ const SHOP_CATALOG = [
     description: 'Cheerful, joyful default smile.'
   },
   {
-    id: 'face-[#FFB7C5]',
+    id: 'face-cute-wink',
     name: 'Cute Wink',
     category: 'faces',
     cost: 150,
@@ -248,6 +328,78 @@ const SHOP_CATALOG = [
     icon: '😲',
     expressionText: '( ⊙ _ ⊙ )',
     description: 'Wide-eyed curious expression.'
+  },
+  {
+    id: 'face-sleepy-pout',
+    name: 'Sleepy Naptime',
+    category: 'faces',
+    cost: 160,
+    icon: '😴',
+    expressionText: '( - ‿ - ) zZZ',
+    description: 'Peaceful closing eyes taking a cozy rest.'
+  },
+  {
+    id: 'face-cat-whiskers',
+    name: 'Cute Kitty Neko',
+    category: 'faces',
+    cost: 210,
+    icon: '🐱',
+    expressionText: '( =^ ‿ ^= )',
+    description: 'Adorable cat whiskers and sweet smile.'
+  },
+  {
+    id: 'face-sunglasses-cool',
+    name: 'Cool Shades',
+    category: 'faces',
+    cost: 260,
+    icon: '😎',
+    expressionText: '( 😎 ‿ 😎 )',
+    description: 'Chilled out retro sunglasses face.'
+  },
+  {
+    id: 'face-blushing-bliss',
+    name: 'Rosy Blossom Blush',
+    category: 'faces',
+    cost: 190,
+    icon: '🌸',
+    expressionText: '( 🌸 ‿ 🌸 )',
+    description: 'Soft blushing floral cheeks filled with bliss.'
+  },
+  {
+    id: 'face-studious-smart',
+    name: 'Studious Smarty',
+    category: 'faces',
+    cost: 230,
+    icon: '🤓',
+    expressionText: '( 👓 ‿ 👓 )',
+    description: 'Focused study glasses face for deep focus.'
+  },
+  {
+    id: 'face-heart-eyes',
+    name: 'Lovey Heart Eyes',
+    category: 'faces',
+    cost: 290,
+    icon: '😍',
+    expressionText: '( ♥ ‿ ♥ )',
+    description: 'Sparkling heart eyes overflowing with affection.'
+  },
+  {
+    id: 'face-cheeky-smirk',
+    name: 'Playful Smirk',
+    category: 'faces',
+    cost: 240,
+    icon: '😏',
+    expressionText: '( ⬘ ‿ ⬘ )',
+    description: 'Clever cheeky grin for productivity hacks.'
+  },
+  {
+    id: 'face-whistle-joy',
+    name: 'Whistling Happy',
+    category: 'faces',
+    cost: 170,
+    icon: '🎶',
+    expressionText: '( ❛ ‿ ❛ ) ♪',
+    description: 'Carefree whistling expression for light study.'
   },
 
   // --- HATS & ACCESSORIES ---
@@ -304,6 +456,96 @@ const SHOP_CATALOG = [
     icon: '👓',
     image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='32' cy='60' r='16' fill='none' stroke='%2333272A' stroke-width='5'/><circle cx='68' cy='60' r='16' fill='none' stroke='%2333272A' stroke-width='5'/><line x1='48' y1='60' x2='52' y2='60' stroke='%2333272A' stroke-width='5'/></svg>",
     description: 'Classy round glasses for a clever, studious blob.'
+  },
+  {
+    id: 'hat-chef-hat',
+    name: 'Toque Chef Hat',
+    category: 'hats',
+    cost: 220,
+    icon: '👨‍🍳',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M30 65 Q20 50 30 35 Q40 20 50 20 Q60 20 70 35 Q80 50 70 65 Z' fill='%23FFFFFF' stroke='%23E8DFD8' stroke-width='3'/><rect x='28' y='65' width='44' height='15' rx='3' fill='%23FFFFFF' stroke='%2333272A' stroke-width='3'/><rect x='28' y='72' width='44' height='4' fill='%23FFB7C5'/></svg>",
+    description: 'Puffy white chef hat with a pastel pink ribbon accent.'
+  },
+  {
+    id: 'hat-cat-ears',
+    name: 'Fluffy Cat Ears',
+    category: 'hats',
+    cost: 270,
+    icon: '🐾',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20 70 Q50 60 80 70' fill='none' stroke='%2333272A' stroke-width='5'/><polygon points='22,65 12,28 42,48' fill='%23FFD1DC' stroke='%23FF8095' stroke-width='3'/><polygon points='25,60 18,34 38,48' fill='%23FF8095'/><polygon points='78,65 88,28 58,48' fill='%23FFD1DC' stroke='%23FF8095' stroke-width='3'/><polygon points='75,60 82,34 62,48' fill='%23FF8095'/></svg>",
+    description: 'Cute pastel cat ears on a comfortable headband.'
+  },
+  {
+    id: 'hat-wizard-cap',
+    name: 'Starry Wizard Cap',
+    category: 'hats',
+    cost: 350,
+    icon: '🧙‍♂️',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M15 75 Q50 10 75 25 Q50 65 85 75 Z' fill='%237C4DFF' stroke='%23536DFE' stroke-width='3'/><ellipse cx='50' cy='75' rx='42' ry='8' fill='%23536DFE'/><polygon points='45,40 48,32 55,38 48,42 45,50 42,42 35,38 42,32' fill='%23FFD700'/><polygon points='62,58 64,52 69,56 64,59 62,65 60,59 55,56 60,52' fill='%23FFF1C5'/></svg>",
+    description: 'Pointed purple wizard hat adorned with shining gold stars.'
+  },
+  {
+    id: 'hat-straw-boater',
+    name: 'Summer Straw Sunhat',
+    category: 'hats',
+    cost: 240,
+    icon: '👒',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><ellipse cx='50' cy='70' rx='45' ry='10' fill='%23F4D06F' stroke='%23E0A96D' stroke-width='3'/><rect x='28' y='38' width='44' height='32' rx='6' fill='%23F4D06F' stroke='%23E0A96D' stroke-width='3'/><rect x='28' y='60' width='44' height='10' fill='%23FF6B81'/></svg>",
+    description: 'Woven straw boater hat with a coral pink satin ribbon.'
+  },
+  {
+    id: 'hat-party-cone',
+    name: 'Party Celebration Cone',
+    category: 'hats',
+    cost: 190,
+    icon: '🎉',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,15 25,75 75,75' fill='%23FFB7C5' stroke='%23FF8095' stroke-width='3'/><circle cx='50' cy='12' r='7' fill='%23FFF1C5'/><circle cx='40' cy='45' r='4' fill='%23B2FBA5'/><circle cx='60' cy='55' r='5' fill='%23E6E6FA'/><circle cx='48' cy='65' r='4' fill='%23AEC6CF'/></svg>",
+    description: 'Polka dotted festive party cone topped with a fluff ball.'
+  },
+  {
+    id: 'hat-angel-halo',
+    name: 'Glowing Angel Halo',
+    category: 'hats',
+    cost: 380,
+    icon: '😇',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><ellipse cx='50' cy='45' rx='36' ry='12' fill='none' stroke='%23FFD700' stroke-width='7'/><ellipse cx='50' cy='45' rx='36' ry='12' fill='none' stroke='%23FFF1C5' stroke-width='3'/></svg>",
+    description: 'A radiant golden halo floating peacefully over the blob.'
+  },
+  {
+    id: 'hat-frog-bucket',
+    name: 'Cute Froggy Bucket Hat',
+    category: 'hats',
+    cost: 310,
+    icon: '🐸',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M25 62 Q25 32 50 32 Q75 32 75 62 Z' fill='%2386EFAC' stroke='%23166534' stroke-width='3'/><path d='M12 62 Q50 52 88 62 Q75 75 12 62 Z' fill='%234ADE80' stroke='%23166534' stroke-width='3'/><circle cx='35' cy='30' r='9' fill='%2386EFAC' stroke='%23166534' stroke-width='3'/><circle cx='35' cy='30' r='4' fill='%2333272A'/><circle cx='65' cy='30' r='9' fill='%2386EFAC' stroke='%23166534' stroke-width='3'/><circle cx='65' cy='30' r='4' fill='%2333272A'/></svg>",
+    description: 'Sage green bucket hat with cute frog eyes on top.'
+  },
+  {
+    id: 'hat-ribbon-bow',
+    name: 'Pastel Satin Hair Bow',
+    category: 'hats',
+    cost: 200,
+    icon: '🎀',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,55 20,35 25,75 50,55' fill='%23FF8095'/><polygon points='50,55 80,35 75,75 50,55' fill='%23FF8095'/><circle cx='50' cy='55' r='8' fill='%23FFD1DC' stroke='%2333272A' stroke-width='2'/><path d='M42 60 Q30 85 20 88' stroke='%23FF8095' stroke-width='6' fill='none'/><path d='M58 60 Q70 85 80 88' stroke='%23FF8095' stroke-width='6' fill='none'/></svg>",
+    description: 'A charming oversized pastel pink ribbon bow.'
+  },
+  {
+    id: 'hat-headphones',
+    name: 'Cozy Beats Headphones',
+    category: 'hats',
+    cost: 330,
+    icon: '🎧',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M20 60 A 35 35 0 0 1 80 60' fill='none' stroke='%2333272A' stroke-width='6'/><rect x='10' y='52' width='16' height='28' rx='8' fill='%23FFB7C5' stroke='%2333272A' stroke-width='3'/><rect x='74' y='52' width='16' height='28' rx='8' fill='%23FFB7C5' stroke='%2333272A' stroke-width='3'/><rect x='18' y='58' width='6' height='16' rx='3' fill='%23FFFFFF'/><rect x='76' y='58' width='6' height='16' rx='3' fill='%23FFFFFF'/></svg>",
+    description: 'Sleek wireless over-ear pastel headphones for lo-fi focus.'
+  },
+  {
+    id: 'hat-graduation-cap',
+    name: 'Academic Mortarboard',
+    category: 'hats',
+    cost: 360,
+    icon: '🎓',
+    image: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,25 90,45 50,65 10,45' fill='%2333272A' stroke='%23000000' stroke-width='2'/><rect x='32' y='52' width='36' height='18' rx='4' fill='%2333272A'/><path d='M50 45 L78 60 L78 78' stroke='%23FFD700' stroke-width='3' fill='none'/><circle cx='78' cy='82' r='4' fill='%23FFD700'/></svg>",
+    description: 'Dapper dark mortarboard hat with a golden tassel.'
   }
 ];
 
@@ -481,7 +723,10 @@ function updateAuthUI(user) {
 // Modal Toggle Helpers
 window.openAuthModal = function() {
   const modal = document.getElementById('auth-modal');
-  if (modal) modal.classList.remove('hidden');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.style.zIndex = '100';
+  }
 };
 
 window.closeAuthModal = function() {
@@ -735,14 +980,7 @@ function recordDailyFocusTime(minutes) {
 }
 
 function seedInitialDailyFocusHistory() {
-  const today = new Date();
-  const sampleMins = [45, 60, 30, 90, 75, 50, 35]; // Past 7 days
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date(today);
-    d.setDate(d.getDate() - i);
-    const key = d.toISOString().split('T')[0];
-    state.dailyFocusHistory[key] = sampleMins[6 - i];
-  }
+  state.dailyFocusHistory = {};
   saveStateToLocalStorage();
 }
 
@@ -772,9 +1010,12 @@ function loadStateFromLocalStorage() {
       if (parsed.tasks) state.tasks = parsed.tasks;
       if (parsed.reminders) state.reminders = parsed.reminders;
     } else {
-      // First time user initialization: starting balance 300 coins
-      state.coins = 300;
-      seedInitialDailyFocusHistory();
+      // First time user initialization: start cleanly at 0
+      state.coins = 0;
+      state.streak = 0;
+      state.totalFocusMinutes = 0;
+      state.dailyFocusHistory = {};
+      saveStateToLocalStorage();
     }
   } catch (err) {
     console.error('Error loading state from localStorage:', err);
@@ -1841,7 +2082,7 @@ function renderStatsView() {
   const streakEl = document.getElementById('stat-streak-days');
   const coinsEl = document.getElementById('stat-total-coins');
 
-  const totalHoursFormatted = (state.totalFocusMinutes / 60).toFixed(1);
+  const totalHoursFormatted = state.totalFocusMinutes > 0 ? (state.totalFocusMinutes / 60).toFixed(1) : '0';
   if (totalHrsEl) totalHrsEl.textContent = `${totalHoursFormatted} hrs`;
   if (streakEl) streakEl.textContent = `${state.streak} Days`;
   if (coinsEl) coinsEl.textContent = state.coins.toLocaleString();

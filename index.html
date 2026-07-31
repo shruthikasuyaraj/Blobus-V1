@@ -479,13 +479,13 @@
 
             <div class="bento-card p-5 flex flex-col gap-1">
               <span class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider">Current Streak</span>
-              <h2 id="stat-streak-days" class="text-3xl font-bold font-heading text-[#33272A]">5 Days</h2>
+              <h2 id="stat-streak-days" class="text-3xl font-bold font-heading text-[#33272A]">0 Days</h2>
               <p class="text-[11px] text-[#7C6C70]">Consecutive daily goals met</p>
             </div>
 
             <div class="bento-card p-5 flex flex-col gap-1">
               <span class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider">Total Coins Earned</span>
-              <h2 id="stat-total-coins" class="text-3xl font-bold font-heading text-[#FFB7C5]">300</h2>
+              <h2 id="stat-total-coins" class="text-3xl font-bold font-heading text-[#FFB7C5]">0</h2>
               <p class="text-[11px] text-[#7C6C70]">Available for squishy items</p>
             </div>
           </div>
@@ -612,7 +612,7 @@
     <!-- ========================================== -->
     <!-- AUTH MODAL / OVERLAY                       -->
     <!-- ========================================== -->
-    <div id="auth-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div id="auth-modal" onclick="if(event.target === this) closeAuthModal()" class="fixed inset-0 z-[100] bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
       <div class="bento-card w-full max-w-md p-6 bg-white flex flex-col gap-5 relative animate-in fade-in zoom-in duration-200">
         <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-[#7C6C70] hover:text-[#33272A] cursor-pointer">
           <span class="material-symbols-outlined">close</span>
@@ -670,7 +670,7 @@
     <!-- ========================================== -->
     <!-- SETTINGS & PROFILE MODAL                  -->
     <!-- ========================================== -->
-    <div id="settings-modal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div id="settings-modal" onclick="if(event.target === this) closeSettingsModal()" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4 hidden">
       <div class="bento-card w-full max-w-lg p-6 bg-white flex flex-col gap-5 relative animate-in fade-in zoom-in duration-200 max-h-[90vh] overflow-y-auto">
         <button onclick="closeSettingsModal()" class="absolute top-5 right-5 text-[#7C6C70] hover:text-[#33272A] cursor-pointer">
           <span class="material-symbols-outlined">close</span>
