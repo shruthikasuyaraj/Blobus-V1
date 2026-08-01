@@ -127,7 +127,8 @@ const state = {
   speech: {
     currentText: "Let's focus together! I am squishy and ready! 💖",
     isTyping: false
-  }
+  },
+  isSidebarCollapsed: false
 };
 
 // Shop Catalog Items (Squishy Blob Categories: Colors, Faces, Hats)
@@ -552,6 +553,7 @@ const SHOP_CATALOG = [
 // Initialization on DOM Loaded
 document.addEventListener('DOMContentLoaded', () => {
   loadStateFromLocalStorage();
+  initSidebarCollapse();
   initAuthSystem();
   initNavigation();
   initTimerUI();
@@ -1009,6 +1011,7 @@ function loadStateFromLocalStorage() {
       }
       if (parsed.tasks) state.tasks = parsed.tasks;
       if (parsed.reminders) state.reminders = parsed.reminders;
+      if (parsed.isSidebarCollapsed !== undefined) state.isSidebarCollapsed = parsed.isSidebarCollapsed;
     } else {
       // First time user initialization: start cleanly at 0
       state.coins = 0;
@@ -1033,7 +1036,8 @@ function saveStateToLocalStorage() {
       ownedItems: state.ownedItems,
       equippedItems: state.equippedItems,
       tasks: state.tasks,
-      reminders: state.reminders
+      reminders: state.reminders,
+      isSidebarCollapsed: state.isSidebarCollapsed
     };
     localStorage.setItem('cozy_focus_blob_state', JSON.stringify(payload));
   } catch (err) {
@@ -1044,6 +1048,45 @@ function saveStateToLocalStorage() {
 /* ==========================================================================
    Navigation & View Routing
    ========================================================================== */
+function initSidebarCollapse() {
+  const sidebar = document.getElementById('main-sidebar');
+  const icon = document.getElementById('sidebar-collapse-icon');
+  if (sidebar && state.isSidebarCollapsed && window.innerWidth >= 768) {
+    sidebar.classList.add('is-collapsed');
+    if (icon) icon.textContent = 'menu_open';
+  }
+}
+
+window.toggleSidebarCollapse = function() {
+  const sidebar = document.getElementById('main-sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  const icon = document.getElementById('sidebar-collapse-icon');
+  if (!sidebar) return;
+
+  const isMobile = window.innerWidth < 768;
+
+  if (isMobile) {
+    const isOpen = sidebar.classList.contains('mobile-open');
+    if (isOpen) {
+      sidebar.classList.remove('mobile-open');
+      if (backdrop) backdrop.classList.add('hidden');
+    } else {
+      sidebar.classList.add('mobile-open');
+      if (backdrop) backdrop.classList.remove('hidden');
+    }
+  } else {
+    state.isSidebarCollapsed = !sidebar.classList.contains('is-collapsed');
+    if (state.isSidebarCollapsed) {
+      sidebar.classList.add('is-collapsed');
+      if (icon) icon.textContent = 'menu_open';
+    } else {
+      sidebar.classList.remove('is-collapsed');
+      if (icon) icon.textContent = 'side_navigation';
+    }
+    saveStateToLocalStorage();
+  }
+};
+
 function initNavigation() {
   const navLinks = document.querySelectorAll('[data-path]');
   navLinks.forEach(link => {
@@ -1059,6 +1102,14 @@ function initNavigation() {
 }
 
 function switchView(path) {
+  // On mobile, automatically close sidebar drawer when user selects a view
+  const sidebar = document.getElementById('main-sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (sidebar && sidebar.classList.contains('mobile-open')) {
+    sidebar.classList.remove('mobile-open');
+    if (backdrop) backdrop.classList.add('hidden');
+  }
+
   // Update sidebar active link styles
   document.querySelectorAll('[data-path]').forEach(link => {
     const isTarget = link.getAttribute('data-path') === path;

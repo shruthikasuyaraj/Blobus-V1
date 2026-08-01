@@ -23,53 +23,63 @@
 
   <div id="app-wrapper" class="flex min-h-screen w-full relative overflow-hidden">
 
+    <!-- BACKDROP FOR MOBILE SIDEBAR -->
+    <div id="sidebar-backdrop" onclick="toggleSidebarCollapse()" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
+
     <!-- ========================================== -->
     <!-- LEFT SIDEBAR NAVIGATION                    -->
     <!-- ========================================== -->
-    <aside id="main-sidebar" class="w-64 bg-white/90 border-r border-[#E8DFD8] p-6 flex flex-col justify-between z-30 shrink-0 shadow-xs">
-      <div class="flex flex-col gap-8">
-        <!-- Logo Header -->
-        <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl bg-[#FFD1DC] border border-[#FFB7C5] flex items-center justify-center text-xl shadow-xs text-[#33272A] font-bold">
-            🌸
+    <aside id="main-sidebar" class="w-64 bg-white/90 border-r border-[#E8DFD8] p-5 md:p-6 flex flex-col justify-between z-50 shrink-0 shadow-xs transition-all duration-300">
+      <div class="flex flex-col gap-6 md:gap-8">
+        <!-- Logo Header & Collapse Toggle Button -->
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-3 sidebar-brand overflow-hidden">
+            <div class="w-10 h-10 md:w-11 md:h-11 rounded-2xl bg-[#FFD1DC] border border-[#FFB7C5] flex items-center justify-center text-xl shadow-xs text-[#33272A] font-bold shrink-0">
+              🌸
+            </div>
+            <div class="sidebar-text">
+              <h1 class="font-heading font-bold text-lg text-[#33272A] leading-tight">Blobus</h1>
+              <span class="text-[11px] text-[#7C6C70] font-medium tracking-wide block truncate">Squishy Companion</span>
+            </div>
           </div>
-          <div>
-            <h1 class="font-heading font-bold text-lg text-[#33272A] leading-tight">Blobus</h1>
-            <span class="text-[11px] text-[#7C6C70] font-medium tracking-wide">Squishy Companion</span>
-          </div>
+
+          <!-- Collapse Sidebar Toggle Button -->
+          <button id="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" class="flex items-center justify-center w-8 h-8 rounded-xl bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#7C6C70] hover:text-[#33272A] transition-all cursor-pointer border border-[#E8DFD8] shrink-0" title="Collapse or Expand Navigation">
+            <span class="material-symbols-outlined text-[18px]" id="sidebar-collapse-icon">side_navigation</span>
+          </button>
         </div>
 
         <!-- Navigation Links -->
-        <nav class="flex flex-col gap-2">
-          <a href="#" data-path="focus-dashboard" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
-            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">timer</span>
-            <span class="font-bold text-sm">Focus Dashboard</span>
+        <nav class="flex flex-col gap-1.5 md:gap-2">
+          <a href="#" data-path="focus-dashboard" class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link" title="Focus Dashboard">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[20px] shrink-0">timer</span>
+            <span class="font-bold text-sm nav-text truncate">Focus Dashboard</span>
           </a>
-          <a href="#" data-path="blob-studio" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
-            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">face</span>
-            <span class="font-bold text-sm">Squishy Studio</span>
+          <a href="#" data-path="blob-studio" class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link" title="Squishy Studio">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[20px] shrink-0">face</span>
+            <span class="font-bold text-sm nav-text truncate">Squishy Studio</span>
           </a>
-          <a href="#" data-path="tasks" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
-            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">assignment</span>
-            <span class="font-bold text-sm">My Intentions</span>
+          <a href="#" data-path="tasks" class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link" title="My Intentions">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[20px] shrink-0">assignment</span>
+            <span class="font-bold text-sm nav-text truncate">My Intentions</span>
           </a>
-          <a href="#" data-path="stats" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
-            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">insights</span>
-            <span class="font-bold text-sm">Focus Insights</span>
+          <a href="#" data-path="stats" class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link" title="Focus Insights">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[20px] shrink-0">insights</span>
+            <span class="font-bold text-sm nav-text truncate">Focus Insights</span>
           </a>
-          <a href="#" data-path="calendar" class="flex items-center gap-3 px-4 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link">
-            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">calendar_month</span>
-            <span class="font-bold text-sm">Schedule & Events</span>
+          <a href="#" data-path="calendar" class="flex items-center gap-3 px-3.5 py-3 rounded-2xl text-[#7C6C70] hover:bg-[#F3EFEA] transition-all group nav-link" title="Schedule & Events">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform text-[20px] shrink-0">calendar_month</span>
+            <span class="font-bold text-sm nav-text truncate">Schedule & Events</span>
           </a>
         </nav>
       </div>
 
       <!-- Sidebar Companion Card -->
-      <div class="bento-card p-4 flex items-center gap-3 bg-[#FAF7F2] border-[#E8DFD8]">
-        <div class="w-10 h-10 rounded-2xl bg-[#FFD1DC] border border-[#FFB7C5] flex items-center justify-center text-lg flex-shrink-0">
+      <div id="sidebar-companion-card" class="bento-card p-3 md:p-4 flex items-center gap-3 bg-[#FAF7F2] border-[#E8DFD8]">
+        <div class="w-9 h-9 md:w-10 md:h-10 rounded-2xl bg-[#FFD1DC] border border-[#FFB7C5] flex items-center justify-center text-lg flex-shrink-0">
           ✨
         </div>
-        <div class="overflow-hidden">
+        <div class="overflow-hidden companion-card-text">
           <h4 class="text-xs font-bold text-[#33272A] truncate header-blob-name">Squishy Puff</h4>
           <span class="text-[10px] text-[#7C6C70] font-semibold block truncate">Soft Morphing Blob</span>
         </div>
@@ -79,54 +89,59 @@
     <!-- ========================================== -->
     <!-- MAIN CONTENT AREA                          -->
     <!-- ========================================== -->
-    <main class="flex-1 flex flex-col h-screen overflow-y-auto relative">
+    <main class="flex-1 flex flex-col h-screen overflow-y-auto relative min-w-0">
 
       <!-- TOP HEADER BAR -->
-      <header class="h-20 px-8 border-b border-[#E8DFD8] flex items-center justify-between bg-white/60 backdrop-blur-md sticky top-0 z-20">
-        <!-- Left Group: Essential Stats (Coins + Streak) -->
-        <div class="flex items-center gap-3">
+      <header class="min-h-[64px] py-2.5 px-3 sm:px-6 border-b border-[#E8DFD8] flex items-center justify-between bg-white/70 backdrop-blur-md sticky top-0 z-20 flex-wrap sm:flex-nowrap gap-2">
+        <!-- Left Group: Mobile Menu Button + Essential Stats -->
+        <div class="flex items-center gap-2">
+          <!-- Mobile Sidebar Toggle Hamburger Button -->
+          <button id="mobile-sidebar-toggle-btn" onclick="toggleSidebarCollapse()" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold border border-[#E8DFD8] cursor-pointer shadow-xs shrink-0" title="Toggle Navigation Sidebar">
+            <span class="material-symbols-outlined text-[20px]">menu</span>
+          </button>
+
           <!-- Focus Coins Pill -->
-          <div class="flex items-center gap-2 bg-[#FFF1C5] border border-[#FFE89C] px-3.5 py-2 rounded-2xl shadow-xs">
-            <span class="text-lg">🪙</span>
+          <div class="flex items-center gap-1.5 sm:gap-2 bg-[#FFF1C5] border border-[#FFE89C] px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl shadow-xs shrink-0">
+            <span class="text-base sm:text-lg">🪙</span>
             <div class="flex flex-col">
-              <span class="text-[9px] text-[#7C6C70] uppercase font-bold tracking-wider leading-none">Focus Coins</span>
-              <span class="text-xs font-bold text-[#33272A] header-coins-balance">300 Coins</span>
+              <span class="text-[8px] sm:text-[9px] text-[#7C6C70] uppercase font-bold tracking-wider leading-none">Coins</span>
+              <span class="text-[11px] sm:text-xs font-bold text-[#33272A] header-coins-balance">300 Coins</span>
             </div>
           </div>
 
           <!-- Streak Pill -->
-          <div class="flex items-center gap-2 bg-[#FFD1DC] border border-[#FFB7C5] px-3.5 py-2 rounded-2xl shadow-xs">
-            <span class="text-lg">🔥</span>
+          <div class="flex items-center gap-1.5 sm:gap-2 bg-[#FFD1DC] border border-[#FFB7C5] px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl shadow-xs shrink-0">
+            <span class="text-base sm:text-lg">🔥</span>
             <div class="flex flex-col">
-              <span class="text-[9px] text-[#7C6C70] uppercase font-bold tracking-wider leading-none">Streak</span>
-              <span class="text-xs font-bold text-[#33272A] header-streak-count">5 Days</span>
+              <span class="text-[8px] sm:text-[9px] text-[#7C6C70] uppercase font-bold tracking-wider leading-none">Streak</span>
+              <span class="text-[11px] sm:text-xs font-bold text-[#33272A] header-streak-count">5 Days</span>
             </div>
           </div>
         </div>
 
         <!-- Right Group: Actions & Profile -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 sm:gap-2.5 ml-auto">
           <!-- Settings Icon Button (⚙️) -->
-          <button id="header-settings-btn" onclick="openSettingsModal()" class="flex items-center justify-center w-10 h-10 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold rounded-2xl transition-all cursor-pointer shadow-xs border border-[#E8DFD8]" title="Settings & Profile">
-            <span class="material-symbols-outlined text-[20px]">settings</span>
+          <button id="header-settings-btn" onclick="openSettingsModal()" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold rounded-2xl transition-all cursor-pointer shadow-xs border border-[#E8DFD8] shrink-0" title="Settings & Profile">
+            <span class="material-symbols-outlined text-[18px] sm:text-[20px]">settings</span>
           </button>
 
           <!-- Insights Header Button -->
-          <button id="header-insights-btn" onclick="switchView('stats')" class="flex items-center gap-1.5 px-3.5 py-2 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold text-xs rounded-2xl transition-all cursor-pointer shadow-xs border border-[#E8DFD8]">
-            <span class="material-symbols-outlined text-[18px] text-[#FFB7C5]">insights</span>
-            <span>Insights</span>
+          <button id="header-insights-btn" onclick="switchView('stats')" class="flex items-center gap-1 px-2.5 py-1.5 sm:px-3.5 sm:py-2 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#33272A] font-bold text-[11px] sm:text-xs rounded-2xl transition-all cursor-pointer shadow-xs border border-[#E8DFD8] shrink-0">
+            <span class="material-symbols-outlined text-[16px] sm:text-[18px] text-[#FFB7C5]">insights</span>
+            <span class="hidden sm:inline">Insights</span>
           </button>
 
           <!-- Profile / User Badge -->
-          <button id="header-auth-btn" onclick="openSettingsModal()" class="flex items-center gap-2 px-3.5 py-2 bg-[#FFD1DC] hover:bg-[#FFB7C5] text-[#33272A] font-bold text-xs rounded-2xl transition-all cursor-pointer shadow-xs border border-[#FFB7C5]/40">
-            <span class="material-symbols-outlined text-[18px]">account_circle</span>
-            <span id="header-user-label">Sign In</span>
+          <button id="header-auth-btn" onclick="openSettingsModal()" class="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3.5 sm:py-2 bg-[#FFD1DC] hover:bg-[#FFB7C5] text-[#33272A] font-bold text-[11px] sm:text-xs rounded-2xl transition-all cursor-pointer shadow-xs border border-[#FFB7C5]/40 shrink-0">
+            <span class="material-symbols-outlined text-[16px] sm:text-[18px]">account_circle</span>
+            <span id="header-user-label" class="max-w-[70px] sm:max-w-none truncate">Sign In</span>
           </button>
         </div>
       </header>
 
       <!-- VIEW CONTAINER -->
-      <div class="flex-1 flex flex-col relative p-6">
+      <div class="flex-1 flex flex-col relative p-3 sm:p-5 md:p-6 min-w-0">
 
         <!-- ========================================== -->
         <!-- VIEW 1: FOCUS DASHBOARD                   -->
@@ -163,7 +178,7 @@
 
                 <!-- Clock Readout -->
                 <div class="text-center my-2">
-                  <h1 id="main-timer" class="text-6xl md:text-7xl font-bold font-heading tracking-tight text-[#33272A]">25:00</h1>
+                  <h1 id="main-timer" class="text-5xl sm:text-6xl md:text-7xl font-bold font-heading tracking-tight text-[#33272A]">25:00</h1>
                   <p id="monitoring-status-badge" class="text-xs text-[#7C6C70] mt-2 font-medium flex items-center justify-center gap-2">
                     <span class="relative flex h-2 w-2">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FFB7C5] opacity-75"></span>
@@ -174,38 +189,38 @@
                 </div>
 
                 <!-- Custom Duration Inputs -->
-                <div class="grid grid-cols-2 gap-3">
-                  <div class="bg-[#FAF7F2] p-3 rounded-2xl border border-[#E8DFD8]">
-                    <label class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider block mb-1">Work (Min)</label>
-                    <input id="input-work-min" type="number" value="25" min="1" max="120" class="w-full bg-white px-3 py-1.5 rounded-xl border border-[#E8DFD8] text-sm font-bold text-[#33272A] focus:outline-none focus:border-[#FFB7C5]" />
+                <div class="grid grid-cols-2 gap-2 sm:gap-3">
+                  <div class="bg-[#FAF7F2] p-2.5 sm:p-3 rounded-2xl border border-[#E8DFD8]">
+                    <label class="text-[9px] sm:text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider block mb-1">Work (Min)</label>
+                    <input id="input-work-min" type="number" value="25" min="1" max="120" class="w-full bg-white px-2.5 py-1.5 rounded-xl border border-[#E8DFD8] text-xs sm:text-sm font-bold text-[#33272A] focus:outline-none focus:border-[#FFB7C5]" />
                   </div>
-                  <div class="bg-[#FAF7F2] p-3 rounded-2xl border border-[#E8DFD8]">
-                    <label class="text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider block mb-1">Break (Min)</label>
-                    <input id="input-break-min" type="number" value="5" min="1" max="60" class="w-full bg-white px-3 py-1.5 rounded-xl border border-[#E8DFD8] text-sm font-bold text-[#33272A] focus:outline-none focus:border-[#FFB7C5]" />
+                  <div class="bg-[#FAF7F2] p-2.5 sm:p-3 rounded-2xl border border-[#E8DFD8]">
+                    <label class="text-[9px] sm:text-[10px] text-[#7C6C70] font-bold uppercase tracking-wider block mb-1">Break (Min)</label>
+                    <input id="input-break-min" type="number" value="5" min="1" max="60" class="w-full bg-white px-2.5 py-1.5 rounded-xl border border-[#E8DFD8] text-xs sm:text-sm font-bold text-[#33272A] focus:outline-none focus:border-[#FFB7C5]" />
                   </div>
                 </div>
 
                 <!-- Controls -->
-                <div class="flex items-center gap-3">
-                  <button id="btn-start" class="flex-1 py-3.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold rounded-2xl text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-98 cursor-pointer">
-                    <span class="material-symbols-outlined">play_arrow</span>
+                <div class="flex items-center gap-2 sm:gap-3">
+                  <button id="btn-start" class="flex-1 py-3 sm:py-3.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white font-bold rounded-2xl text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-98 cursor-pointer min-h-[44px]">
+                    <span class="material-symbols-outlined text-[20px]">play_arrow</span>
                     <span>Start Work</span>
                   </button>
-                  <button id="btn-reset" class="px-4 py-3.5 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#7C6C70] font-bold rounded-2xl text-sm transition-all cursor-pointer">
-                    <span class="material-symbols-outlined">refresh</span>
+                  <button id="btn-reset" class="px-3.5 sm:px-4 py-3 sm:py-3.5 bg-[#F3EFEA] hover:bg-[#EAE3DA] text-[#7C6C70] font-bold rounded-2xl text-xs sm:text-sm transition-all cursor-pointer min-h-[44px]">
+                    <span class="material-symbols-outlined text-[20px]">refresh</span>
                   </button>
                 </div>
 
               </div>
 
               <!-- Coin Reward Progress Bar Card -->
-              <div class="bento-card p-5 flex flex-col gap-3 bg-[#FFF1C5]/40 border-[#FFE89C]">
-                <div class="flex justify-between items-center text-xs font-bold text-[#33272A]">
+              <div class="bento-card p-4 sm:p-5 flex flex-col gap-2.5 sm:gap-3 bg-[#FFF1C5]/40 border-[#FFE89C]">
+                <div class="flex justify-between items-center text-xs font-bold text-[#33272A] flex-wrap gap-1">
                   <span class="flex items-center gap-1.5">
                     <span>🪙</span>
                     <span>Active Focus Earnings</span>
                   </span>
-                  <span id="coin-reward-progress-label" class="text-[11px] text-[#7C6C70]">0 / 10 min to +50 coins</span>
+                  <span id="coin-reward-progress-label" class="text-[10px] sm:text-[11px] text-[#7C6C70]">0 / 10 min to +50 coins</span>
                 </div>
                 <div class="w-full h-3 bg-white/80 rounded-full overflow-hidden border border-[#E8DFD8] p-0.5">
                   <div id="coin-reward-progress-bar" class="h-full bg-gradient-to-r from-[#FFD1DC] to-[#FFB7C5] rounded-full transition-all duration-500 w-0"></div>
@@ -216,7 +231,7 @@
 
             <!-- Middle/Right Column: Main Squishy Blob Companion Bento -->
             <div class="col-span-12 lg:col-span-7 flex flex-col h-full">
-              <div id="blob-stage-viewport" class="bento-card-main relative flex-1 min-h-[480px] flex flex-col items-center justify-center p-8 overflow-hidden rounded-[32px] border border-[#E8DFD8] shadow-xl">
+              <div id="blob-stage-viewport" class="bento-card-main relative flex-1 min-h-[300px] sm:min-h-[380px] md:min-h-[480px] flex flex-col items-center justify-center p-4 sm:p-8 overflow-hidden rounded-[28px] sm:rounded-[32px] border border-[#E8DFD8] shadow-xl">
                 
                 <!-- Squishy Blob Stage Container -->
                 <div class="blob-stage relative my-auto">
@@ -233,22 +248,23 @@
                 </div>
 
                 <!-- Speech Bubble -->
-                <div class="absolute top-6 left-6 md:top-8 md:left-8 z-40 max-w-xs">
-                  <div class="speech-bubble relative shadow-md">
-                    <p class="text-sm font-bold text-[#33272A] leading-snug speech-bubble-text">
+                <div class="absolute top-3 left-3 sm:top-6 sm:left-6 md:top-8 md:left-8 z-40 max-w-[180px] sm:max-w-xs">
+                  <div class="speech-bubble relative shadow-md p-2.5 sm:p-3.5">
+                    <p class="text-xs sm:text-sm font-bold text-[#33272A] leading-snug speech-bubble-text">
                       Let's focus together! I am squishy and ready! 💖
                     </p>
                   </div>
                 </div>
 
                 <!-- Customization Shop Hotspot Button -->
-                <button data-open-shop class="absolute top-6 right-6 md:top-8 md:right-8 z-40 flex items-center gap-2 bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-2xl border border-[#E8DFD8] shadow-md text-sm font-bold text-[#33272A] hover:bg-[#FAF7F2] transition-all cursor-pointer">
-                  <span class="material-symbols-outlined text-[#FFB7C5]">palette</span>
-                  <span>Squishy Shop</span>
+                <button data-open-shop class="absolute top-3 right-3 sm:top-6 sm:right-6 md:top-8 md:right-8 z-40 flex items-center gap-1.5 sm:gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-2xl border border-[#E8DFD8] shadow-md text-xs sm:text-sm font-bold text-[#33272A] hover:bg-[#FAF7F2] transition-all cursor-pointer">
+                  <span class="material-symbols-outlined text-[#FFB7C5] text-[18px]">palette</span>
+                  <span class="hidden xs:inline">Squishy Shop</span>
+                  <span class="xs:hidden">Shop</span>
                 </button>
 
                 <!-- Bottom Intentions Quick Glance -->
-                <div class="w-full max-w-md bg-white/85 backdrop-blur-md rounded-2xl p-4 border border-[#E8DFD8] shadow-xs mt-auto">
+                <div class="w-full max-w-full sm:max-w-md bg-white/85 backdrop-blur-md rounded-2xl p-3 sm:p-4 border border-[#E8DFD8] shadow-xs mt-auto">
                   <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-[#7C6C70]">Current Intention</span>
                     <span class="text-[10px] text-[#FFB7C5] font-bold task-completed-count">0/3 Completed</span>
@@ -264,20 +280,22 @@
           </div>
 
           <!-- Bottom Row: Session Reminders & Google Calendar Widget -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             <!-- Custom Session Reminders -->
-            <div class="bento-card p-6 flex flex-col gap-4">
+            <div class="bento-card p-4 sm:p-6 flex flex-col gap-4">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-2 border-b border-[#E8DFD8]">
-                <h3 class="text-sm font-bold text-[#33272A] flex items-center gap-2">
+                <h3 class="text-xs sm:text-sm font-bold text-[#33272A] flex items-center gap-2">
                   <span class="material-symbols-outlined text-[#FFB7C5]">notifications_active</span>
                   <span>Session Reminders</span>
                 </h3>
-                <div class="flex gap-2">
-                  <input id="reminder-text-input" type="text" placeholder="e.g. Drink a glass of water 💧" class="px-3 py-1.5 bg-[#FAF7F2] border border-[#E8DFD8] rounded-xl text-xs font-semibold focus:outline-none focus:border-[#FFB7C5] w-48 sm:w-56" />
-                  <input id="reminder-minute-input" type="number" value="10" min="1" max="60" class="px-2.5 py-1.5 bg-[#FAF7F2] border border-[#E8DFD8] rounded-xl text-xs font-semibold w-16 focus:outline-none focus:border-[#FFB7C5]" />
-                  <button id="btn-add-reminder" class="px-3 py-1.5 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white rounded-xl text-xs font-bold transition-all cursor-pointer">
-                    + Add
-                  </button>
+                <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                  <input id="reminder-text-input" type="text" placeholder="e.g. Drink water 💧" class="px-3 py-2 bg-[#FAF7F2] border border-[#E8DFD8] rounded-xl text-xs font-semibold focus:outline-none focus:border-[#FFB7C5] w-full sm:w-52" />
+                  <div class="flex items-center gap-2">
+                    <input id="reminder-minute-input" type="number" value="10" min="1" max="60" class="px-2.5 py-2 bg-[#FAF7F2] border border-[#E8DFD8] rounded-xl text-xs font-semibold w-16 focus:outline-none focus:border-[#FFB7C5]" />
+                    <button id="btn-add-reminder" class="flex-1 sm:flex-none px-4 py-2 bg-[#FFB7C5] hover:bg-[#FF9EAF] text-white rounded-xl text-xs font-bold transition-all cursor-pointer min-h-[36px]">
+                      + Add
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -567,7 +585,7 @@
     <!-- ========================================== -->
     <!-- SHOP SIDEBAR DRAWER                        -->
     <!-- ========================================== -->
-    <aside id="shop-drawer" class="w-96 bg-[#FAF7F2] shadow-2xl border-l border-[#E8DFD8] flex flex-col z-50 translate-x-full transition-transform duration-500 ease-in-out absolute right-0 top-0 bottom-0">
+    <aside id="shop-drawer" class="w-full sm:w-96 max-w-full bg-[#FAF7F2] shadow-2xl border-l border-[#E8DFD8] flex flex-col z-50 translate-x-full transition-transform duration-500 ease-in-out absolute right-0 top-0 bottom-0">
       <div class="p-6 flex flex-col gap-3 border-b border-[#E8DFD8]">
         <div class="flex justify-between items-center">
           <h2 class="text-xl text-[#33272A] font-bold font-heading">Squishy Shop</h2>

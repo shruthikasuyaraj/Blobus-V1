@@ -558,3 +558,77 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(0);
   opacity: 1;
 }
+
+@media (max-width: 640px) {
+  .toast-notification {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ==========================================================================
+   Collapsible Sidebar & Mobile Off-Canvas Navigation Rules
+   ========================================================================== */
+
+/* Mobile Drawer Behavior (< 768px) */
+@media (max-width: 767px) {
+  #main-sidebar {
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+
+  #main-sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+
+  #mobile-sidebar-toggle-btn {
+    display: flex !important;
+  }
+}
+
+/* Desktop Collapsed Behavior (>= 768px) */
+@media (min-width: 768px) {
+  #mobile-sidebar-toggle-btn {
+    display: flex; /* Can be used as alternative or toggle */
+  }
+
+  #main-sidebar.is-collapsed {
+    width: 5rem !important; /* 80px */
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  #main-sidebar.is-collapsed .sidebar-text,
+  #main-sidebar.is-collapsed .nav-text,
+  #main-sidebar.is-collapsed .companion-card-text {
+    display: none !important;
+  }
+
+  #main-sidebar.is-collapsed .nav-link {
+    justify-content: center !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  #main-sidebar.is-collapsed #sidebar-companion-card {
+    justify-content: center !important;
+    padding: 0.5rem !important;
+  }
+
+  #main-sidebar.is-collapsed .sidebar-brand {
+    justify-content: center !important;
+  }
+}
+
+/* Touch optimization for mobile buttons */
+button, a {
+  touch-action: manipulation;
+}
+
