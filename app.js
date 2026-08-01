@@ -1282,6 +1282,11 @@ function resetTimer() {
   resetBlobUpsetReaction();
 }
 
+window.startTimer = startTimer;
+window.pauseTimer = pauseTimer;
+window.resetTimer = resetTimer;
+window.setTimerMode = setTimerMode;
+
 function setTimerMode(mode) {
   pauseTimer();
   syncTimingFromInputs();
