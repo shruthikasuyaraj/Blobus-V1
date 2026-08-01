@@ -1347,13 +1347,14 @@ function onTimerComplete() {
     state.warningCount = 0;
     updateWarningBadgeUI();
     saveStateToLocalStorage();
-    showToast("🎉 Work session completed! +100 Bonus Coins!");
-    setAvatarSpeech("Wonderful focus! You completed the session! Time for a break! 🌸");
+    showToast("🎉 Work session completed! +100 Bonus Coins! Break timer starting...");
     setTimerMode('break');
+    startTimer();
+    setAvatarSpeech("Wonderful focus! You completed the session! Break timer started automatically! 🌸🍵");
   } else {
     showToast("🔔 Break time is over! Ready for another focus session?");
-    setAvatarSpeech("Break time is over! Feeling refreshed? Let's get back into the flow! ✨");
     setTimerMode('work');
+    setAvatarSpeech("Break time is over! Feeling refreshed? Click Start to begin your next focus session! ✨");
   }
 
   updateHeaderUI();
@@ -1374,14 +1375,16 @@ function updateTimerButtonsUI() {
   const startBtn = document.getElementById('btn-start');
   if (!startBtn) return;
 
+  const isWork = state.timer.mode === 'work';
+
   if (state.timer.status === 'running') {
-    startBtn.innerHTML = `<span class="material-symbols-outlined">pause</span> Pause Work`;
+    startBtn.innerHTML = `<span class="material-symbols-outlined">pause</span> ${isWork ? 'Pause Work' : 'Pause Break'}`;
     startBtn.classList.add('bg-[#FF8095]');
   } else if (state.timer.status === 'paused') {
     startBtn.innerHTML = `<span class="material-symbols-outlined">play_arrow</span> Resume`;
     startBtn.classList.remove('bg-[#FF8095]');
   } else {
-    startBtn.innerHTML = `<span class="material-symbols-outlined">play_arrow</span> Start Work`;
+    startBtn.innerHTML = `<span class="material-symbols-outlined">play_arrow</span> ${isWork ? 'Start Work' : 'Start Break'}`;
     startBtn.classList.remove('bg-[#FF8095]');
   }
 }
